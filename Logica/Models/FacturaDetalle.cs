@@ -6,7 +6,29 @@ using System.Threading.Tasks;
 
 namespace Logica.Models
 {
-    internal class FacturaDetalle
+    public class FacturaDetalle
     {
+        public string DescripcionProducto { get; set; }
+        public decimal CantidadFacturada { get; set; }
+        public decimal PrecioUnitario { get; set; }
+        public decimal PorcentajeDescuento { get; set; }
+        public decimal SubTotalLinea { get; set; }
+        public decimal ImpuestoLinea { get; set; }
+        public decimal TotalLinea { get; set; }
+
+
+        Producto MiProducto { get; set; }
+
+        public FacturaDetalle()
+        {
+            MiProducto = new Producto();
+        }
+
+
+
+
+
+
+
     }
 }

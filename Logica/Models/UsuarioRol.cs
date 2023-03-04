@@ -1,12 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Logica.Models
 {
-    internal class UsuarioRol
+    public class UsuarioRol
     {
+        public int IDRol;
+        public string Descripcion;
+
+
+
+        public DataTable Listar(bool VerActivos = true)
+        {
+            DataTable R = new DataTable();
+
+
+
+            return R;
+        }
+
     }
 }

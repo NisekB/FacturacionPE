@@ -15,7 +15,7 @@ namespace Logica.Models
         public string EmailEmpresa { get; set; }
         public string DireccionEmpresa { get; set; }
         public string TelefonoEmpresa { get; set; }
-        public string RutaImagen { get; set; }
+        public string LogoEmpresa { get; set; }
 
 
         public DataTable Listar(bool VerActivos = true)

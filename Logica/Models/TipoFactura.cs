@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace Logica.Models
 {
-    internal class TipoFactura
+    public class TipoFactura
     {
+        public int IDFacturaTipo;
+
+
+        public int IDFacturaTIpo
+        {
+            get { return IDFacturaTipo; }
+            set { IDFacturaTipo = value; }
+        }
+
+
+
+
     }
 }
