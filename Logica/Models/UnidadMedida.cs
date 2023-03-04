@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logica
+namespace Logica.Models
 {
-    internal class Cliente
+    internal class UnidadMedida
     {
     }
 }
