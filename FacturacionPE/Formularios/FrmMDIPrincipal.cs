@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FacturacionPE
+namespace FacturacionPE.Formularios
 {
-    public partial class Form1 : Form
+    public partial class FrmMDIPrincipal : Form
     {
-        public Form1()
+        public FrmMDIPrincipal()
         {
             InitializeComponent();
         }
