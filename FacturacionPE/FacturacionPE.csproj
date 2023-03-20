@@ -52,8 +52,12 @@
     <Compile Include="Formularios\FrmMDIPrincipal.Designer.cs">
       <DependentUpon>FrmMDIPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjetosGlobales.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\FrmMDIPrincipal.resx">
+      <DependentUpon>FrmMDIPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
