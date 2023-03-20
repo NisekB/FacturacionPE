@@ -52,11 +52,20 @@
     <Compile Include="Formularios\FrmMDIPrincipal.Designer.cs">
       <DependentUpon>FrmMDIPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FrmUsuariosGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmUsuariosGestion.Designer.cs">
+      <DependentUpon>FrmUsuariosGestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ObjetosGlobales.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formularios\FrmMDIPrincipal.resx">
       <DependentUpon>FrmMDIPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmUsuariosGestion.resx">
+      <DependentUpon>FrmUsuariosGestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

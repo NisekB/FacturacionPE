@@ -54,6 +54,11 @@
             this.TxTContra = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.CboxTipoUsuario = new System.Windows.Forms.ComboBox();
+            this.CIDUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +68,12 @@
             this.DgvListaUsuarios.AllowUserToAddRows = false;
             this.DgvListaUsuarios.AllowUserToDeleteRows = false;
             this.DgvListaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvListaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CIDUsuario,
+            this.CNombre,
+            this.CEmail,
+            this.CCedula,
+            this.CDescripcion});
             this.DgvListaUsuarios.Location = new System.Drawing.Point(2, 44);
             this.DgvListaUsuarios.MultiSelect = false;
             this.DgvListaUsuarios.Name = "DgvListaUsuarios";
@@ -175,7 +186,7 @@
             // 
             // BtnLimpiarForm
             // 
-            this.BtnLimpiarForm.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.BtnLimpiarForm.BackColor = System.Drawing.Color.CornflowerBlue;
             this.BtnLimpiarForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLimpiarForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLimpiarForm.ForeColor = System.Drawing.Color.White;
@@ -332,6 +343,53 @@
             this.CboxTipoUsuario.Size = new System.Drawing.Size(293, 24);
             this.CboxTipoUsuario.TabIndex = 15;
             // 
+            // CIDUsuario
+            // 
+            this.CIDUsuario.DataPropertyName = "IDUsuario";
+            this.CIDUsuario.HeaderText = "Código Usuario";
+            this.CIDUsuario.MinimumWidth = 6;
+            this.CIDUsuario.Name = "CIDUsuario";
+            this.CIDUsuario.ReadOnly = true;
+            this.CIDUsuario.Width = 125;
+            // 
+            // CNombre
+            // 
+            this.CNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CNombre.DataPropertyName = "Nombre";
+            this.CNombre.HeaderText = "Nombre";
+            this.CNombre.MinimumWidth = 6;
+            this.CNombre.Name = "CNombre";
+            this.CNombre.ReadOnly = true;
+            // 
+            // CEmail
+            // 
+            this.CEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CEmail.DataPropertyName = "Email";
+            this.CEmail.HeaderText = "Email";
+            this.CEmail.MinimumWidth = 6;
+            this.CEmail.Name = "CEmail";
+            this.CEmail.ReadOnly = true;
+            this.CEmail.Width = 180;
+            // 
+            // CCedula
+            // 
+            this.CCedula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CCedula.DataPropertyName = "Cedula";
+            this.CCedula.HeaderText = "Cédula";
+            this.CCedula.MinimumWidth = 6;
+            this.CCedula.Name = "CCedula";
+            this.CCedula.ReadOnly = true;
+            this.CCedula.Width = 150;
+            // 
+            // CDescripcion
+            // 
+            this.CDescripcion.DataPropertyName = "Descripcion";
+            this.CDescripcion.HeaderText = "Tipo Usuario";
+            this.CDescripcion.MinimumWidth = 6;
+            this.CDescripcion.Name = "CDescripcion";
+            this.CDescripcion.ReadOnly = true;
+            this.CDescripcion.Width = 125;
+            // 
             // FrmUsuariosGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -351,6 +409,7 @@
             this.Name = "FrmUsuariosGestion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de Usuarios";
+            this.Load += new System.EventHandler(this.FrmUsuariosGestion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaUsuarios)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -387,5 +446,10 @@
         private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Button BtnLimpiarForm;
         private System.Windows.Forms.Button BtnCerrar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CIDUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CDescripcion;
     }
 }

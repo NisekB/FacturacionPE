@@ -16,5 +16,22 @@ namespace FacturacionPE.Formularios
         {
             InitializeComponent();
         }
+
+        private void FrmUsuariosGestion_Load(object sender, EventArgs e)
+        {
+            ListarUsuariosActivos();
+
+
+
+        }
+
+
+        private void ListarUsuariosActivos()
+        {
+            Logica.Models.Usuario MiUsuario = new Logica.Models.Usuario();
+            DataTable dt = MiUsuario.ListarActivos();
+
+            DgvListaUsuarios.DataSource = dt;
+        }
     }
 }

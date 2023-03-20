@@ -8,5 +8,9 @@ namespace FacturacionPE
 {
     public static class ObjetosGlobales
     {
+
+        public static Formularios.FrmUsuariosGestion MiFormDeGestionDeUsuarios = new Formularios.FrmUsuariosGestion();
+
+
     }
 }

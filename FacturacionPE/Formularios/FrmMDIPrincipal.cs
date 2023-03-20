@@ -16,5 +16,14 @@ namespace FacturacionPE.Formularios
         {
             InitializeComponent();
         }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ObjetosGlobales.MiFormDeGestionDeUsuarios.Visible)
+            {
+                ObjetosGlobales.MiFormDeGestionDeUsuarios = new FrmUsuariosGestion();
+                ObjetosGlobales.MiFormDeGestionDeUsuarios.Show();
+            }
+        }
     }
 }
