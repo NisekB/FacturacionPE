@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace Logica.Models
         public string Cedula { get; set; }
         public bool Activo { get; set; }
 
-        UsuarioRol MiRol { get; set; }
+        public UsuarioRol MiRol { get; set; }
 
         public Usuario()
         {
@@ -29,7 +30,24 @@ namespace Logica.Models
         {
             bool R = false;
 
+            Conexion MiCnn3 = new Conexion();
 
+            MiCnn3.ListaParametros.Add(new SqlParameter("@Nombre", this.Nombre));
+            MiCnn3.ListaParametros.Add(new SqlParameter("@Email", this.Email));
+            MiCnn3.ListaParametros.Add(new SqlParameter("@Telefono", this.Telefono));
+            MiCnn3.ListaParametros.Add(new SqlParameter("@EmailRespaldo", this.EmailRespaldo));
+            MiCnn3.ListaParametros.Add(new SqlParameter("@Contra", this.Contra));
+            MiCnn3.ListaParametros.Add(new SqlParameter("@Cedula", this.Cedula));
+            MiCnn3.ListaParametros.Add(new SqlParameter("@IDRol", this.MiRol.IDRol));
+
+
+            int Resultado = MiCnn3.EjecutarUpdateDeleteInsert("SpUsuarioAgregar");
+
+            if (Resultado > 0)
+            {
+                R = true;
+
+            }
 
             return R;
 
@@ -57,7 +75,15 @@ namespace Logica.Models
         {
             bool R = false;
 
+            Conexion MiCnn = new Conexion();
+            MiCnn.ListaParametros.Add(new SqlParameter("@Cedula", this.Cedula));
 
+            DataTable Consulta = MiCnn.EjecutarSelect("SpUsuarioConsultarPorCedula");
+
+            if (Consulta.Rows.Count > 0)
+            {
+                R = true;
+            }
 
             return R;
 
@@ -67,7 +93,15 @@ namespace Logica.Models
         {
             bool R = false;
 
+            Conexion MiCnn = new Conexion();
+            MiCnn.ListaParametros.Add(new SqlParameter("@Email", this.Email));
 
+            DataTable Consulta = MiCnn.EjecutarSelect("SpUsuarioConsultarPorEmail");
+
+            if (Consulta.Rows.Count > 0)
+            {
+                R = true;
+            }
 
             return R;
 
