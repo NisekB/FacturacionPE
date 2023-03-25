@@ -25,5 +25,10 @@ namespace FacturacionPE.Formularios
                 ObjetosGlobales.MiFormDeGestionDeUsuarios.Show();
             }
         }
+
+        private void FrmMDIPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
