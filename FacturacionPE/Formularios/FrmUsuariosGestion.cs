@@ -26,12 +26,30 @@ namespace FacturacionPE.Formularios
 
         private void FrmUsuariosGestion_Load(object sender, EventArgs e)
         {
+            MdiParent = ObjetosGlobales.MiFormularioPrincipal;
+
             ListarUsuariosActivos();
 
             CargarRolUsuario();
 
             LimpiarFormulario();
 
+            ActivarAgregar();
+
+        }
+
+        private void ActivarAgregar()
+        {
+            BtnAgregar.Enabled = true;
+            BtnEditar.Enabled = false;
+            BtnEliminar.Enabled = false;
+        }
+
+        private void ActivarEditarEliminar()
+        {
+            BtnAgregar.Enabled = false;
+            BtnEditar.Enabled = true;
+            BtnEliminar.Enabled = true;
         }
 
         private void LimpiarFormulario()
@@ -67,7 +85,9 @@ namespace FacturacionPE.Formularios
                 !string.IsNullOrEmpty(TxTTelefono.Text.Trim()) &&
                 !string.IsNullOrEmpty(TxTRespaldo.Text.Trim()) &&
                 !string.IsNullOrEmpty(TxTContra.Text.Trim()) &&
-                CboxTipoUsuario.SelectedIndex > -1
+                CboxTipoUsuario.SelectedIndex > -1 &&
+                CbMinimo.Checked && CbMayuscula.Checked && CbNumero.Checked && CbEspecial.Checked && CbMinuscula.Checked
+
                 )
             {
                 R = true;
@@ -107,13 +127,43 @@ namespace FacturacionPE.Formularios
                 if (string.IsNullOrEmpty(TxTContra.Text.Trim()))
                 {
                     MessageBox.Show("La Contraseña del Usuario es Requerida", "Error de validación", MessageBoxButtons.OK);
-                    TxTContra.Focus();
+                   TxTContra.Focus();
                     return false;
                 }
                 if (CboxTipoUsuario.SelectedIndex == -1)
                 {
                     MessageBox.Show("El Tipo de Usuario es Requerido", "Error de validación", MessageBoxButtons.OK);
                     CboxTipoUsuario.Focus();
+                    return false;
+                }
+                if (!CbMayuscula.Checked)
+                {
+                    MessageBox.Show("Contraseña necesita una letra mayuscula como mínimo", ":(", MessageBoxButtons.OK);
+                    TxTContra.Focus();
+                    return false;
+                }
+                if (!CbMinuscula.Checked)
+                {
+                    MessageBox.Show("Contraseña necesita una letra minuscula como mínimo", ":(", MessageBoxButtons.OK);
+                    TxTContra.Focus();
+                    return false;
+                }
+                if (!CbNumero.Checked)
+                {
+                    MessageBox.Show("Contraseña necesita un número como mínimo", ":(", MessageBoxButtons.OK);
+                    TxTContra.Focus();
+                    return false;
+                }
+                if (!CbEspecial.Checked)
+                {
+                    MessageBox.Show("Contraseña necesita un caracter especial como mínimo", ":(", MessageBoxButtons.OK);
+                    TxTContra.Focus();
+                    return false;
+                }
+                if (!CbMinimo.Checked)
+                {
+                    MessageBox.Show("La contraseña no tiene la longitud requerida", ":(", MessageBoxButtons.OK);
+                    TxTContra.Focus();
                     return false;
                 }
 
@@ -238,6 +288,7 @@ namespace FacturacionPE.Formularios
 
         private void TxTEmail_Leave(object sender, EventArgs e)
         {
+            
             if (TxTEmail.Text.Trim() != string.Empty)
             {
                 if (Validacion.ValidarEmail(TxTEmail.Text.Trim()) == false)
@@ -303,35 +354,35 @@ namespace FacturacionPE.Formularios
 
         private void ValidarComplejidad()
         {
-
+            //Se encuentra en ValidarDatosRequeridos() para mayor fluides 
             
            if (!CbMayuscula.Checked)
            {
-             MessageBox.Show("Contraseña no tiene el formato correcto", ":(", MessageBoxButtons.OK);
+             MessageBox.Show("Contraseña necesita una letra mayuscula como mínimo", ":(", MessageBoxButtons.OK);
              TxTContra.Focus();
              return;
             }
            if (!CbMinimo.Checked)
             {
-                MessageBox.Show("Contraseña no tiene el formato correcto", ":(", MessageBoxButtons.OK);
+                MessageBox.Show("La contraseña no tiene la longitud requerida", ":(", MessageBoxButtons.OK);
                 TxTContra.Focus();
                 return;
             }
            if (!CbNumero.Checked)
             {
-                MessageBox.Show("Contraseña no tiene el formato correcto", ":(", MessageBoxButtons.OK);
+                MessageBox.Show("Contraseña necesita un número como mínimo", ":(", MessageBoxButtons.OK);
                 TxTContra.Focus();
                 return;
             }
            if (!CbEspecial.Checked)
             {
-                MessageBox.Show("Contraseña no tiene el formato correcto", ":(", MessageBoxButtons.OK);
+                MessageBox.Show("Contraseña necesita un caracter especial como mínimo", ":(", MessageBoxButtons.OK);
                 TxTContra.Focus();
                 return;
             }
            if (!CbMinuscula.Checked)
             {
-                MessageBox.Show("Contraseña no tiene el formato correcto", ":(", MessageBoxButtons.OK);
+                MessageBox.Show("Contraseña necesita una letra minuscula como mínimo", ":(", MessageBoxButtons.OK);
                 TxTContra.Focus();
                 return;
             }
@@ -348,12 +399,15 @@ namespace FacturacionPE.Formularios
 
         private void TxTContra_Leave(object sender, EventArgs e)
         {
-            ValidarComplejidad();
+            //Se esta usando ValidarDatosRequeridos()
+
+            //ValidarComplejidad();
         }
 
         private void BtnLimpiarForm_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
+            ActivarAgregar();
         }
 
         private void DgvListaUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -381,9 +435,16 @@ namespace FacturacionPE.Formularios
 
                     CboxTipoUsuario.SelectedValue = MiUsuarioLocal.MiRol.IDRol;
 
+                    ActivarEditarEliminar();
+
                 }
 
             }
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

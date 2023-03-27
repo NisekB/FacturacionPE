@@ -428,6 +428,7 @@
             this.BtnEditar.TabIndex = 6;
             this.BtnEditar.Text = "Modificar";
             this.BtnEditar.UseVisualStyleBackColor = false;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // BtnEliminar
             // 
