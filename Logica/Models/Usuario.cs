@@ -60,6 +60,39 @@ namespace Logica.Models
         {
             bool R = false;
 
+            Usuario UsuarioConsulta = new Usuario();
+            UsuarioConsulta = ConsultarPorID(this.IDUsuario);
+
+            if (UsuarioConsulta.IDUsuario > 0)
+            {
+                Conexion MyCnn = new Conexion();
+
+                string FullEncriptado = "";
+
+                if (!string.IsNullOrEmpty(this.Contra))
+                {
+
+                    Encriptador MiEncriptador = new Encriptador();
+
+                    FullEncriptado = MiEncriptador.EncriptarEnUnSentido(this.Contra);
+
+                }
+
+                MyCnn.ListaParametros.Add(new SqlParameter("@ID", this.IDUsuario));
+                MyCnn.ListaParametros.Add(new SqlParameter("@Nombre", this.Nombre));
+                MyCnn.ListaParametros.Add(new SqlParameter("@Email", this.Email));
+                MyCnn.ListaParametros.Add(new SqlParameter("@Telefono", this.Telefono));
+                MyCnn.ListaParametros.Add(new SqlParameter("@EmailRespaldo", this.EmailRespaldo));
+                MyCnn.ListaParametros.Add(new SqlParameter("@Contra", FullEncriptado));
+                MyCnn.ListaParametros.Add(new SqlParameter("@Cedula", this.Cedula));
+                MyCnn.ListaParametros.Add(new SqlParameter("@IDRol", this.MiRol.IDRol));
+
+
+                int Resultado = MyCnn.EjecutarUpdateDeleteInsert("SpUsuariosModificar");
+
+                if (Resultado > 0) R = true;
+
+            }
 
             return R;
 
@@ -69,6 +102,26 @@ namespace Logica.Models
         public bool Eliminar()
         {
             bool R = false;
+
+            Conexion MyCnn = new Conexion();
+
+            MyCnn.ListaParametros.Add(new SqlParameter("@ID", IDUsuario));  
+
+            if (MyCnn.EjecutarUpdateDeleteInsert("SpUsuarioDesactivar") > 0) R =true;
+
+
+            return R;
+        }
+
+        public bool Activar()
+        {
+            bool R = false;
+
+            Conexion MyCnn = new Conexion();
+
+            MyCnn.ListaParametros.Add(new SqlParameter("@ID", IDUsuario));
+
+            if (MyCnn.EjecutarUpdateDeleteInsert("SpUsuarioActivar") > 0) R = true;
 
 
             return R;
@@ -163,6 +216,17 @@ namespace Logica.Models
             Conexion MiCnn = new Conexion();
 
             R = MiCnn.EjecutarSelect("SpUsuariosListarActivos");
+
+            return R;
+        }
+
+        public DataTable ListarInactivos()
+        {
+            DataTable R = new DataTable();
+
+            Conexion MiCnn = new Conexion();
+
+            R = MiCnn.EjecutarSelect("SpUsuariosListarInactivos");
 
             return R;
         }

@@ -75,6 +75,16 @@ namespace FacturacionPE.Formularios
             DgvListaUsuarios.ClearSelection();
         }
 
+        private void ListarUsuariosInactivos()
+        {
+            Logica.Models.Usuario MiUsuario = new Logica.Models.Usuario();
+            DataTable dt = MiUsuario.ListarInactivos();
+
+            DgvListaUsuarios.DataSource = dt;
+
+            DgvListaUsuarios.ClearSelection();
+        }
+
         private bool ValidarDatosRequeridos()
         {
 
@@ -83,14 +93,61 @@ namespace FacturacionPE.Formularios
                 !string.IsNullOrEmpty(TxTEmail.Text.Trim()) &&
                 !string.IsNullOrEmpty(TxtCedula.Text.Trim()) &&
                 !string.IsNullOrEmpty(TxTTelefono.Text.Trim()) &&
-                !string.IsNullOrEmpty(TxTRespaldo.Text.Trim()) &&
-                !string.IsNullOrEmpty(TxTContra.Text.Trim()) &&
-                CboxTipoUsuario.SelectedIndex > -1 &&
-                CbMinimo.Checked && CbMayuscula.Checked && CbNumero.Checked && CbEspecial.Checked && CbMinuscula.Checked
-
+                !string.IsNullOrEmpty(TxTRespaldo.Text.Trim()) &&              
+                CboxTipoUsuario.SelectedIndex > -1 
                 )
             {
-                R = true;
+                if (BtnEditar.Enabled)
+                {
+                    //Solo si se esta editando es posible omitir la contraseña
+                    R = true;
+                }
+                else
+                {
+                    //Solo si vamos agregar un usuario es obligatorio introducir una contraseña
+                    if (!string.IsNullOrEmpty(TxTContra.Text.Trim()) && 
+                        CbMinimo.Checked && 
+                        CbMayuscula.Checked && 
+                        CbNumero.Checked && 
+                        CbEspecial.Checked && 
+                        CbMinuscula.Checked)
+                    {
+                        if (!CbMayuscula.Checked)
+                        {
+                            MessageBox.Show("Contraseña necesita una letra mayuscula como mínimo", ":(", MessageBoxButtons.OK);
+                            TxTContra.Focus();
+                            return false;
+                        }
+                        if (!CbMinuscula.Checked)
+                        {
+                            MessageBox.Show("Contraseña necesita una letra minuscula como mínimo", ":(", MessageBoxButtons.OK);
+                            TxTContra.Focus();
+                            return false;
+                        }
+                        if (!CbNumero.Checked)
+                        {
+                            MessageBox.Show("Contraseña necesita un número como mínimo", ":(", MessageBoxButtons.OK);
+                            TxTContra.Focus();
+                            return false;
+                        }
+                        if (!CbEspecial.Checked)
+                        {
+                            MessageBox.Show("Contraseña necesita un caracter especial como mínimo", ":(", MessageBoxButtons.OK);
+                            TxTContra.Focus();
+                            return false;
+                        }
+                        if (!CbMinimo.Checked)
+                        {
+                            MessageBox.Show("La contraseña no tiene la longitud requerida", ":(", MessageBoxButtons.OK);
+                            TxTContra.Focus();
+                            return false;
+                        }
+                        
+                            R = true;
+
+                    }
+                }
+
             }
             else{
 
@@ -135,37 +192,7 @@ namespace FacturacionPE.Formularios
                     MessageBox.Show("El Tipo de Usuario es Requerido", "Error de validación", MessageBoxButtons.OK);
                     CboxTipoUsuario.Focus();
                     return false;
-                }
-                if (!CbMayuscula.Checked)
-                {
-                    MessageBox.Show("Contraseña necesita una letra mayuscula como mínimo", ":(", MessageBoxButtons.OK);
-                    TxTContra.Focus();
-                    return false;
-                }
-                if (!CbMinuscula.Checked)
-                {
-                    MessageBox.Show("Contraseña necesita una letra minuscula como mínimo", ":(", MessageBoxButtons.OK);
-                    TxTContra.Focus();
-                    return false;
-                }
-                if (!CbNumero.Checked)
-                {
-                    MessageBox.Show("Contraseña necesita un número como mínimo", ":(", MessageBoxButtons.OK);
-                    TxTContra.Focus();
-                    return false;
-                }
-                if (!CbEspecial.Checked)
-                {
-                    MessageBox.Show("Contraseña necesita un caracter especial como mínimo", ":(", MessageBoxButtons.OK);
-                    TxTContra.Focus();
-                    return false;
-                }
-                if (!CbMinimo.Checked)
-                {
-                    MessageBox.Show("La contraseña no tiene la longitud requerida", ":(", MessageBoxButtons.OK);
-                    TxTContra.Focus();
-                    return false;
-                }
+                }               
 
             }
             return R;
@@ -200,7 +227,7 @@ namespace FacturacionPE.Formularios
             
             MiUsuarioLocal.Nombre = TxTNombre.Text.Trim();
             MiUsuarioLocal.Email = TxTEmail.Text.Trim();
-            MiUsuarioLocal.Telefono = TxTEmail.Text.Trim();
+            MiUsuarioLocal.Telefono = TxTTelefono.Text.Trim();
             MiUsuarioLocal.EmailRespaldo = TxTRespaldo.Text.Trim();
             MiUsuarioLocal.Contra = TxTContra.Text.Trim();
             MiUsuarioLocal.Cedula = TxtCedula.Text.Trim();
@@ -436,6 +463,16 @@ namespace FacturacionPE.Formularios
                     CboxTipoUsuario.SelectedValue = MiUsuarioLocal.MiRol.IDRol;
 
                     ActivarEditarEliminar();
+                    if (CbVerActivos.Checked)
+                    {
+                        GbDetalles.Enabled = true;
+                        BtnEditar.Enabled = true;
+                    }
+                    else
+                    {
+                        GbDetalles.Enabled = false;
+                        BtnEditar.Enabled = false;
+                    }
 
                 }
 
@@ -444,7 +481,120 @@ namespace FacturacionPE.Formularios
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
+            if (ValidarDatosRequeridos())
+            {
+                string Mensaje = string.Format("¿Desea contiguar con la modificación del usuario {0}?", TxTNombre.Text.Trim());
+                DialogResult Respuesta = MessageBox.Show(Mensaje, "???", MessageBoxButtons.YesNo);
 
+                if (Respuesta == DialogResult.Yes)
+                {
+                    MiUsuarioLocal.Nombre = TxTNombre.Text.Trim();
+                    MiUsuarioLocal.Email = TxTEmail.Text.Trim();
+                    MiUsuarioLocal.Telefono = TxTTelefono.Text.Trim();
+                    MiUsuarioLocal.EmailRespaldo = TxTRespaldo.Text.Trim();
+                    MiUsuarioLocal.Contra = TxTContra.Text.Trim();
+                    MiUsuarioLocal.Cedula = TxtCedula.Text.Trim();
+                    MiUsuarioLocal.MiRol.IDRol = Convert.ToInt32(CboxTipoUsuario.SelectedValue);
+
+                    if (MiUsuarioLocal.Modificar())
+                    {
+                        string MensajeExito = string.Format("El usuario {0} se a modificado de forma correcta", MiUsuarioLocal.Nombre);
+                        MessageBox.Show(MensajeExito, ":D", MessageBoxButtons.OK);
+
+                        ListarUsuariosActivos();
+                        LimpiarFormulario();
+                        ActivarAgregar();
+                    }
+                    else
+                    {
+                        string MensajeError = string.Format("El usuario {0} no se pudo modificar correctamente", MiUsuarioLocal.Nombre);
+                        MessageBox.Show(MensajeError, ":C", MessageBoxButtons.OK);
+
+                    }
+                }
+            }
+        }
+
+        private void BtnVerContra_MouseDown(object sender, MouseEventArgs e)
+        {
+            TxTContra.UseSystemPasswordChar = false;
+        }
+
+        private void BtnVerContra_MouseUp(object sender, MouseEventArgs e)
+        {
+            TxTContra.UseSystemPasswordChar = true;
+        }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MiUsuarioLocal.IDUsuario > 0)
+            {
+                Logica.Models.Usuario UsuarioConsulta = new Logica.Models.Usuario();
+                UsuarioConsulta = MiUsuarioLocal.ConsultarPorID(MiUsuarioLocal.IDUsuario);
+                if (UsuarioConsulta.IDUsuario > 0)
+                {
+                    string Mensaje = "";
+
+                    if (CbVerActivos.Checked)
+                    {
+                        Mensaje = string.Format("¿Deseas continuar con la eliminación del usuario {0}?", MiUsuarioLocal.Nombre);
+                    }
+                    else
+                    {
+                        Mensaje = string.Format("¿Deseas activar el usuario {0}?", MiUsuarioLocal.Nombre);
+                    }
+
+                    DialogResult resp = MessageBox.Show(Mensaje, "???", MessageBoxButtons.YesNo);
+
+                    if (resp == DialogResult.Yes)
+                    {
+                        if (CbVerActivos.Checked)
+                        {
+                            if (MiUsuarioLocal.Eliminar())
+                            {
+                                MessageBox.Show("Usuario Eliminado de forma correcta", "=/", MessageBoxButtons.OK);
+                            }
+                        }
+                        else
+                        {
+                            if (MiUsuarioLocal.Activar())
+                            {
+                                MessageBox.Show("Usuario Activado de forma correcta", "=)", MessageBoxButtons.OK);
+                            }
+                        }
+                        CbVerActivos.Checked = true;
+                        ListarUsuariosActivos();
+                        LimpiarFormulario();
+                        ActivarAgregar();
+                
+                    }
+                }
+
+            }
+        }
+
+        private void CbVerActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CbVerActivos.Checked)
+            {
+                BtnEliminar.Text = "Eliminar";
+                ListarUsuariosActivos();
+                LimpiarFormulario();
+                ActivarAgregar();
+            }
+            else
+            {
+                BtnEliminar.Text = "Activar";
+                ListarUsuariosInactivos();
+                LimpiarFormulario();
+                ActivarEditarEliminar();
+
+            }
         }
     }
 }

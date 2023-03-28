@@ -34,7 +34,8 @@
             this.CEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GbDetalles = new System.Windows.Forms.GroupBox();
+            this.BtnVerContra = new System.Windows.Forms.Button();
             this.CbEspecial = new System.Windows.Forms.CheckBox();
             this.CbNumero = new System.Windows.Forms.CheckBox();
             this.CbMinuscula = new System.Windows.Forms.CheckBox();
@@ -65,7 +66,7 @@
             this.BtnLimpiarForm = new System.Windows.Forms.Button();
             this.BtnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaUsuarios)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.GbDetalles.SuspendLayout();
             this.SuspendLayout();
             // 
             // DgvListaUsuarios
@@ -140,35 +141,50 @@
             this.CDescripcion.ReadOnly = true;
             this.CDescripcion.Width = 125;
             // 
-            // groupBox1
+            // GbDetalles
             // 
-            this.groupBox1.Controls.Add(this.CbEspecial);
-            this.groupBox1.Controls.Add(this.CbNumero);
-            this.groupBox1.Controls.Add(this.CbMinuscula);
-            this.groupBox1.Controls.Add(this.CbMayuscula);
-            this.groupBox1.Controls.Add(this.CbMinimo);
-            this.groupBox1.Controls.Add(this.CboxTipoUsuario);
-            this.groupBox1.Controls.Add(this.TxTTipoUsuario);
-            this.groupBox1.Controls.Add(this.TxTContra);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.TxTRespaldo);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.TxTTelefono);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.TxtCedula);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.TxTEmail);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.TxTNombre);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.TxTCodigo);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(2, 271);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(970, 285);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Detalles del Usuario";
+            this.GbDetalles.Controls.Add(this.BtnVerContra);
+            this.GbDetalles.Controls.Add(this.CbEspecial);
+            this.GbDetalles.Controls.Add(this.CbNumero);
+            this.GbDetalles.Controls.Add(this.CbMinuscula);
+            this.GbDetalles.Controls.Add(this.CbMayuscula);
+            this.GbDetalles.Controls.Add(this.CbMinimo);
+            this.GbDetalles.Controls.Add(this.CboxTipoUsuario);
+            this.GbDetalles.Controls.Add(this.TxTTipoUsuario);
+            this.GbDetalles.Controls.Add(this.TxTContra);
+            this.GbDetalles.Controls.Add(this.label9);
+            this.GbDetalles.Controls.Add(this.TxTRespaldo);
+            this.GbDetalles.Controls.Add(this.label6);
+            this.GbDetalles.Controls.Add(this.TxTTelefono);
+            this.GbDetalles.Controls.Add(this.label7);
+            this.GbDetalles.Controls.Add(this.TxtCedula);
+            this.GbDetalles.Controls.Add(this.label4);
+            this.GbDetalles.Controls.Add(this.TxTEmail);
+            this.GbDetalles.Controls.Add(this.label5);
+            this.GbDetalles.Controls.Add(this.TxTNombre);
+            this.GbDetalles.Controls.Add(this.label3);
+            this.GbDetalles.Controls.Add(this.TxTCodigo);
+            this.GbDetalles.Controls.Add(this.label2);
+            this.GbDetalles.Location = new System.Drawing.Point(2, 271);
+            this.GbDetalles.Name = "GbDetalles";
+            this.GbDetalles.Size = new System.Drawing.Size(970, 285);
+            this.GbDetalles.TabIndex = 1;
+            this.GbDetalles.TabStop = false;
+            this.GbDetalles.Text = "Detalles del Usuario";
+            // 
+            // BtnVerContra
+            // 
+            this.BtnVerContra.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnVerContra.BackgroundImage = global::FacturacionPE.Properties.Resources._65000;
+            this.BtnVerContra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnVerContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVerContra.Location = new System.Drawing.Point(885, 67);
+            this.BtnVerContra.Name = "BtnVerContra";
+            this.BtnVerContra.Size = new System.Drawing.Size(32, 23);
+            this.BtnVerContra.TabIndex = 21;
+            this.BtnVerContra.UseVisualStyleBackColor = false;
+            this.BtnVerContra.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnVerContra_MouseDown);
+            this.BtnVerContra.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnVerContra_MouseUp);
             // 
             // CbEspecial
             // 
@@ -247,7 +263,7 @@
             // 
             this.TxTContra.Location = new System.Drawing.Point(611, 67);
             this.TxTContra.Name = "TxTContra";
-            this.TxTContra.Size = new System.Drawing.Size(293, 22);
+            this.TxTContra.Size = new System.Drawing.Size(269, 22);
             this.TxTContra.TabIndex = 13;
             this.TxTContra.UseSystemPasswordChar = true;
             this.TxTContra.TextChanged += new System.EventHandler(this.TxTContra_TextChanged);
@@ -415,6 +431,7 @@
             this.CbVerActivos.TabIndex = 5;
             this.CbVerActivos.Text = "Ver Usuarios Activos";
             this.CbVerActivos.UseVisualStyleBackColor = true;
+            this.CbVerActivos.CheckedChanged += new System.EventHandler(this.CbVerActivos_CheckedChanged);
             // 
             // BtnEditar
             // 
@@ -442,6 +459,7 @@
             this.BtnEliminar.TabIndex = 7;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = false;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // BtnLimpiarForm
             // 
@@ -469,6 +487,7 @@
             this.BtnCerrar.TabIndex = 9;
             this.BtnCerrar.Text = "Cerrar";
             this.BtnCerrar.UseVisualStyleBackColor = false;
+            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
             // FrmUsuariosGestion
             // 
@@ -483,7 +502,7 @@
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnAgregar);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.GbDetalles);
             this.Controls.Add(this.DgvListaUsuarios);
             this.MaximizeBox = false;
             this.Name = "FrmUsuariosGestion";
@@ -491,8 +510,8 @@
             this.Text = "Gestión de Usuarios";
             this.Load += new System.EventHandler(this.FrmUsuariosGestion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaUsuarios)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GbDetalles.ResumeLayout(false);
+            this.GbDetalles.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -501,7 +520,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DgvListaUsuarios;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GbDetalles;
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtBuscar;
@@ -536,5 +555,6 @@
         private System.Windows.Forms.CheckBox CbMinuscula;
         private System.Windows.Forms.CheckBox CbMayuscula;
         private System.Windows.Forms.CheckBox CbMinimo;
+        private System.Windows.Forms.Button BtnVerContra;
     }
 }
