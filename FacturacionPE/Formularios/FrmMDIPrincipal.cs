@@ -30,5 +30,23 @@ namespace FacturacionPE.Formularios
         {
 
         }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ObjetosGlobales.MiFormDeGestionProductos.Visible)
+            {
+                ObjetosGlobales.MiFormDeGestionProductos = new FrmProductosGestion();
+                ObjetosGlobales.MiFormDeGestionProductos.Show();
+            }
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ObjetosGlobales.MiFormDeGestionClientes.Visible)
+            {
+                ObjetosGlobales.MiFormDeGestionClientes = new FrmClienteGestion();
+                ObjetosGlobales.MiFormDeGestionClientes.Show();
+            }
+        }
     }
 }

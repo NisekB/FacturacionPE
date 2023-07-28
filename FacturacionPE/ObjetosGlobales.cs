@@ -13,7 +13,8 @@ namespace FacturacionPE
         public static Form MiFormularioPrincipal = new Formularios.FrmMDIPrincipal();
 
         public static Formularios.FrmUsuariosGestion MiFormDeGestionDeUsuarios = new Formularios.FrmUsuariosGestion();
-
+        public static Formularios.FrmProductosGestion MiFormDeGestionProductos = new Formularios.FrmProductosGestion();
+        public static Formularios.FrmClienteGestion MiFormDeGestionClientes = new Formularios.FrmClienteGestion();
 
     }
 }

@@ -18,7 +18,7 @@ namespace Logica.Models
         public bool Activo { get; set; }
 
         //Atributo Compuesto
-        TipoCliente MiTipo { get; set; }
+        public TipoCliente MiTipo { get; set; }
 
         //Constructor de la clase 
         public Cliente()

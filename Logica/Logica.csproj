@@ -72,7 +72,6 @@
     <Compile Include="Models\ProductoCategoria.cs" />
     <Compile Include="Models\TipoCliente.cs" />
     <Compile Include="Models\TipoFactura.cs" />
-    <Compile Include="Models\UnidadMedida.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioRol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

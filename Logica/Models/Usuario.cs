@@ -231,6 +231,23 @@ namespace Logica.Models
             return R;
         }
 
+        public DataTable ListarConFiltro(String Filtro, bool VerActivos)
+        {
+            DataTable R = new DataTable();
+
+            Conexion MiCnn = new Conexion();
+
+
+            MiCnn.ListaParametros.Add(new SqlParameter("@Activo", VerActivos));
+            MiCnn.ListaParametros.Add(new SqlParameter("@Filtro", Filtro));
+
+
+            R = MiCnn.EjecutarSelect("SPUsuarioListarConFiltro");
+
+            return R;
+        }
+
+
         public DataTable Listar(bool VerActivos = true)
         {
             DataTable R = new DataTable();

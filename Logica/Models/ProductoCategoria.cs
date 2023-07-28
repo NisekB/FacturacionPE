@@ -16,11 +16,18 @@ namespace Logica.Models
 
         public DataTable Listar(bool VerActivos = true)
         {
+            
             DataTable R = new DataTable();
+
+            Conexion MiCnn = new Conexion();
+
+            R = MiCnn.EjecutarSelect("SpCategoriaListar");
 
 
 
             return R;
+
+
         }
 
 

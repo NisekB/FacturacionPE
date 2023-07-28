@@ -112,6 +112,7 @@ namespace FacturacionPE.Formularios
                         CbEspecial.Checked && 
                         CbMinuscula.Checked)
                     {
+                        //***************************PREGUNTAR***************************
                         if (!CbMayuscula.Checked)
                         {
                             MessageBox.Show("Contraseña necesita una letra mayuscula como mínimo", ":(", MessageBoxButtons.OK);
@@ -311,6 +312,7 @@ namespace FacturacionPE.Formularios
         private void TxTContra_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = Validacion.CaracteresTexto(e);
+         
         }
 
         private void TxTEmail_Leave(object sender, EventArgs e)
@@ -595,6 +597,34 @@ namespace FacturacionPE.Formularios
                 ActivarEditarEliminar();
 
             }
+        }
+
+        private void BuscarFiltro()
+        {
+            //***************************PREGUNTAR***************************
+
+            if (TxTBuscar.Text.Trim() != string.Empty)
+            {
+                string ValorPorBuscar = TxTBuscar.Text.Trim();
+
+                DataTable ListaFiltrada = new DataTable();
+                ListaFiltrada = MiUsuarioLocal.ListarConFiltro(ValorPorBuscar, CbVerActivos.Checked);
+
+                if (ListaFiltrada != null && ListaFiltrada.Rows.Count > 0)
+                {
+                    DgvListaUsuarios.DataSource = ListaFiltrada;
+                }
+                else
+                {
+                   // ListarUsuariosActivos(!CbVerActivos.Checked);
+                }
+
+            }
+        }
+
+        private void TxTBuscar_TextChanged(object sender, EventArgs e)
+        {
+            //BuscarFiltro();
         }
     }
 }

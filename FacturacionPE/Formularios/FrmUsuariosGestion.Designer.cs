@@ -59,7 +59,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.TxTBuscar = new System.Windows.Forms.TextBox();
             this.CbVerActivos = new System.Windows.Forms.CheckBox();
             this.BtnEditar = new System.Windows.Forms.Button();
             this.BtnEliminar = new System.Windows.Forms.Button();
@@ -408,16 +408,17 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Buscar:";
             // 
-            // TxtBuscar
+            // TxTBuscar
             // 
-            this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBuscar.ForeColor = System.Drawing.Color.DarkGreen;
-            this.TxtBuscar.Location = new System.Drawing.Point(299, 9);
-            this.TxtBuscar.MaxLength = 20;
-            this.TxtBuscar.Name = "TxtBuscar";
-            this.TxtBuscar.Size = new System.Drawing.Size(358, 30);
-            this.TxtBuscar.TabIndex = 4;
-            this.TxtBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxTBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxTBuscar.ForeColor = System.Drawing.Color.DarkGreen;
+            this.TxTBuscar.Location = new System.Drawing.Point(299, 9);
+            this.TxTBuscar.MaxLength = 20;
+            this.TxTBuscar.Name = "TxTBuscar";
+            this.TxTBuscar.Size = new System.Drawing.Size(358, 30);
+            this.TxTBuscar.TabIndex = 4;
+            this.TxTBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxTBuscar.TextChanged += new System.EventHandler(this.TxTBuscar_TextChanged);
             // 
             // CbVerActivos
             // 
@@ -499,7 +500,7 @@
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnEditar);
             this.Controls.Add(this.CbVerActivos);
-            this.Controls.Add(this.TxtBuscar);
+            this.Controls.Add(this.TxTBuscar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.GbDetalles);
@@ -523,7 +524,7 @@
         private System.Windows.Forms.GroupBox GbDetalles;
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TxtBuscar;
+        private System.Windows.Forms.TextBox TxTBuscar;
         private System.Windows.Forms.CheckBox CbVerActivos;
         private System.Windows.Forms.ComboBox CboxTipoUsuario;
         private System.Windows.Forms.Label TxTTipoUsuario;
