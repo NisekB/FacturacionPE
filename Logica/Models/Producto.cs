@@ -61,19 +61,36 @@ namespace Logica.Models
         {
             bool R = false;
 
+            Producto ProductoConsulta = new Producto();
+            ProductoConsulta = ConsultarPorID(this.IDProducto);
+
+            if (ProductoConsulta.IDProducto > 0)
+            {
+
+                Conexion MyCnn = new Conexion();
+
+                MyCnn.ListaParametros.Add(new SqlParameter("@ID", this.IDProducto));
+                MyCnn.ListaParametros.Add(new SqlParameter("@CodigoDeBarras", this.CodigoBarras));
+                MyCnn.ListaParametros.Add(new SqlParameter("@DescripcionProducto", this.DescripcionProducto));
+                MyCnn.ListaParametros.Add(new SqlParameter("@Cantidad", this.Cantidad));
+                MyCnn.ListaParametros.Add(new SqlParameter("@PrecioUnitario", this.PrecioUnitario));
+                MyCnn.ListaParametros.Add(new SqlParameter("@IDImpuesto", this.MiImpuesto.IDImpuesto));
+                MyCnn.ListaParametros.Add(new SqlParameter("@IDProductoCategoria", this.MiCategoria.IDProductoCategoria));
+
+                int Resultado = MyCnn.EjecutarUpdateDeleteInsert("SpProductoModificar");
+
+                if (Resultado > 0)
+                {
+
+                    R = true;
+
+                }
+
+            }
 
             return R;
-
         }
 
-
-        public bool Eliminar()
-        {
-            bool R = false;
-
-
-            return R;
-        }
 
         public bool ConsultarPorDescripcion()
         {
@@ -90,9 +107,6 @@ namespace Logica.Models
                 R = true;
 
             }
-
-
-
 
             return R;
 
@@ -118,25 +132,6 @@ namespace Logica.Models
 
         }
 
-        public bool ConsultarPorID()
-        {
-            bool R = false;
-
-            Conexion MiCnn3 = new Conexion();
-            MiCnn3.ListaParametros.Add(new SqlParameter("@IDP", this.IDProducto));
-
-            DataTable Consulta = MiCnn3.EjecutarSelect("SpProductoConsultarPorIDProducto");
-
-            if (Consulta.Rows.Count > 0)
-            {
-
-                R = true;
-
-            }
-
-            return R;
-
-        }
 
         public Producto ConsultarPorID(int pIDProducto)
         {

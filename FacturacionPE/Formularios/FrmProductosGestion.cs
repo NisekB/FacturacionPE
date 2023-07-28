@@ -24,13 +24,27 @@ namespace FacturacionPE.Formularios
 
         private void FrmProductosGestion_Load(object sender, EventArgs e)
         {
+            MdiParent = ObjetosGlobales.MiFormularioPrincipal;
 
             ListarProductos();
             CargarImpuestoProducto();
             CargarCategoriaProducto();
-
+            ActivarAgregar();
 
         }
+
+        private void ActivarAgregar()
+        {
+            BtnAgregar.Enabled = true;
+            BtnEditar.Enabled = false;
+        }
+
+        private void ActivarEditar()
+        {
+            BtnAgregar.Enabled = false;
+            BtnEditar.Enabled = true;
+        }
+
 
         private void CargarImpuestoProducto()
         {
@@ -87,11 +101,13 @@ namespace FacturacionPE.Formularios
             CboxTipoImpuesto.SelectedIndex = -1;
             CboxTipoCategoria.SelectedIndex = -1;
 
+            ActivarAgregar();
         }
 
         private void BtnLimpiarForm_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
+            ActivarAgregar();
         }
 
         private void BtnCerrar_Click(object sender, EventArgs e)
@@ -118,7 +134,7 @@ namespace FacturacionPE.Formularios
             {
                 if (string.IsNullOrEmpty(TxTDescripcion.Text.Trim()))
                 {
-                    MessageBox.Show("La descrioción del producto es requerida", "Error de Validación", MessageBoxButtons.OK);
+                    MessageBox.Show("La descripción del producto es requerida", "Error de Validación", MessageBoxButtons.OK);
                     TxTDescripcion.Focus();
                     return false;
                 }
@@ -270,12 +286,52 @@ namespace FacturacionPE.Formularios
                     CboxTipoCategoria.SelectedValue = MiProductoLocal.MiCategoria.IDProductoCategoria;
                     CboxTipoImpuesto.SelectedValue = MiProductoLocal.MiImpuesto.IDImpuesto;
 
-
+                    ActivarEditar();
 
 
 
                 }
 
+            }
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            if (ValidarDatosRequeridos())
+            {
+                string Mensaje = string.Format("¿Desea continuar con la modificación del Producto {0}?", TxTDescripcion.Text.Trim());
+
+                DialogResult Respuesta = MessageBox.Show(Mensaje, "???", MessageBoxButtons.YesNo);
+
+                if (Respuesta == DialogResult.Yes)
+                {
+                    MiProductoLocal.CodigoBarras = TxTCodBarras.Text.Trim();
+                    MiProductoLocal.DescripcionProducto = TxTDescripcion.Text.Trim();
+                    MiProductoLocal.Cantidad = Convert.ToInt32(TxtCantidad.Text.Trim()); //Verificar si es ToInt32 al ser Decimal el atributo
+                    MiProductoLocal.PrecioUnitario = Convert.ToInt32(TxTPrecio.Text.Trim()); //Verificar si es ToInt32 al ser Decimal el atributo
+                    MiProductoLocal.MiImpuesto.IDImpuesto = Convert.ToInt32(CboxTipoImpuesto.SelectedValue);
+                    MiProductoLocal.MiCategoria.IDProductoCategoria = Convert.ToInt32(CboxTipoCategoria.SelectedValue);
+
+                    if (MiProductoLocal.Editar())
+                    {
+                        string MsjExito = string.Format("El Producto {0} se ha modificado correctamente", MiProductoLocal.DescripcionProducto);
+
+                        MessageBox.Show(MsjExito, ":D", MessageBoxButtons.OK);
+
+                        ListarProductos();
+                        LimpiarFormulario();
+                        ActivarAgregar();
+
+                    }
+                    else
+                    {
+                        string MsjExito = string.Format("El Producto {0} NO se ha podido modificado correctamente", MiProductoLocal.DescripcionProducto);
+
+                        MessageBox.Show(MsjExito, ":C", MessageBoxButtons.OK);
+
+                    }
+
+                }
             }
         }
     }

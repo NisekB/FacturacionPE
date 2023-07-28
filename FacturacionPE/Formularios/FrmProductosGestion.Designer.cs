@@ -46,7 +46,6 @@
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnCerrar = new System.Windows.Forms.Button();
             this.BtnLimpiarForm = new System.Windows.Forms.Button();
-            this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
             this.TxTBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -229,7 +228,7 @@
             this.BtnAgregar.ForeColor = System.Drawing.Color.White;
             this.BtnAgregar.Location = new System.Drawing.Point(12, 533);
             this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(114, 48);
+            this.BtnAgregar.Size = new System.Drawing.Size(208, 48);
             this.BtnAgregar.TabIndex = 3;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = false;
@@ -263,31 +262,19 @@
             this.BtnLimpiarForm.UseVisualStyleBackColor = false;
             this.BtnLimpiarForm.Click += new System.EventHandler(this.BtnLimpiarForm_Click);
             // 
-            // BtnEliminar
-            // 
-            this.BtnEliminar.BackColor = System.Drawing.Color.Firebrick;
-            this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.ForeColor = System.Drawing.Color.White;
-            this.BtnEliminar.Location = new System.Drawing.Point(291, 533);
-            this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(114, 48);
-            this.BtnEliminar.TabIndex = 11;
-            this.BtnEliminar.Text = "Eliminar";
-            this.BtnEliminar.UseVisualStyleBackColor = false;
-            // 
             // BtnEditar
             // 
             this.BtnEditar.BackColor = System.Drawing.Color.Goldenrod;
             this.BtnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEditar.ForeColor = System.Drawing.Color.White;
-            this.BtnEditar.Location = new System.Drawing.Point(147, 533);
+            this.BtnEditar.Location = new System.Drawing.Point(243, 533);
             this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(114, 48);
+            this.BtnEditar.Size = new System.Drawing.Size(208, 48);
             this.BtnEditar.TabIndex = 10;
             this.BtnEditar.Text = "Modificar";
             this.BtnEditar.UseVisualStyleBackColor = false;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // TxTBuscar
             // 
@@ -402,7 +389,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.BtnLimpiarForm);
-            this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnEditar);
             this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.groupBox1);
@@ -424,7 +410,6 @@
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Button BtnCerrar;
         private System.Windows.Forms.Button BtnLimpiarForm;
-        private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Button BtnEditar;
         private System.Windows.Forms.TextBox TxTBuscar;
         private System.Windows.Forms.Label label1;

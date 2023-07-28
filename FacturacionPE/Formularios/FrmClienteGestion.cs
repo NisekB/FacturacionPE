@@ -25,6 +25,8 @@ namespace FacturacionPE.Formularios
 
         private void FrmClienteGestion_Load(object sender, EventArgs e)
         {
+            MdiParent = ObjetosGlobales.MiFormularioPrincipal;
+
             LimpiarFormulario();
         }
 
