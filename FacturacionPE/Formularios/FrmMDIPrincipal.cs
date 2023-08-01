@@ -48,5 +48,10 @@ namespace FacturacionPE.Formularios
                 ObjetosGlobales.MiFormDeGestionClientes.Show();
             }
         }
+
+        private void FrmMDIPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

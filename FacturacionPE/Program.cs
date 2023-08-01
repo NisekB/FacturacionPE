@@ -16,9 +16,11 @@ namespace FacturacionPE
         static void Main()
         {
             Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(ObjetosGlobales.MiFormularioPrincipal);
-            
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Formularios.FrmLogin());
+
+            //Application.Run(ObjetosGlobales.MiFormularioPrincipal);
+
         }
     }
 }

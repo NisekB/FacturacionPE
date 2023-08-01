@@ -105,45 +105,8 @@ namespace FacturacionPE.Formularios
                 else
                 {
                     //Solo si vamos agregar un usuario es obligatorio introducir una contraseña
-                    if (!string.IsNullOrEmpty(TxTContra.Text.Trim()) && 
-                        CbMinimo.Checked && 
-                        CbMayuscula.Checked && 
-                        CbNumero.Checked && 
-                        CbEspecial.Checked && 
-                        CbMinuscula.Checked)
-                    {
-                        //***************************PREGUNTAR***************************
-                        if (!CbMayuscula.Checked)
-                        {
-                            MessageBox.Show("Contraseña necesita una letra mayuscula como mínimo", ":(", MessageBoxButtons.OK);
-                            TxTContra.Focus();
-                            return false;
-                        }
-                        if (!CbMinuscula.Checked)
-                        {
-                            MessageBox.Show("Contraseña necesita una letra minuscula como mínimo", ":(", MessageBoxButtons.OK);
-                            TxTContra.Focus();
-                            return false;
-                        }
-                        if (!CbNumero.Checked)
-                        {
-                            MessageBox.Show("Contraseña necesita un número como mínimo", ":(", MessageBoxButtons.OK);
-                            TxTContra.Focus();
-                            return false;
-                        }
-                        if (!CbEspecial.Checked)
-                        {
-                            MessageBox.Show("Contraseña necesita un caracter especial como mínimo", ":(", MessageBoxButtons.OK);
-                            TxTContra.Focus();
-                            return false;
-                        }
-                        if (!CbMinimo.Checked)
-                        {
-                            MessageBox.Show("La contraseña no tiene la longitud requerida", ":(", MessageBoxButtons.OK);
-                            TxTContra.Focus();
-                            return false;
-                        }
-                        
+                    if (!string.IsNullOrEmpty(TxTContra.Text.Trim()))
+                    {                   
                             R = true;
 
                     }
@@ -383,7 +346,6 @@ namespace FacturacionPE.Formularios
 
         private void ValidarComplejidad()
         {
-            //Se encuentra en ValidarDatosRequeridos() para mayor fluides 
             
            if (!CbMayuscula.Checked)
            {
@@ -391,13 +353,13 @@ namespace FacturacionPE.Formularios
              TxTContra.Focus();
              return;
             }
-           if (!CbMinimo.Checked)
+            if (!CbMinuscula.Checked)
             {
-                MessageBox.Show("La contraseña no tiene la longitud requerida", ":(", MessageBoxButtons.OK);
+                MessageBox.Show("Contraseña necesita una letra minuscula como mínimo", ":(", MessageBoxButtons.OK);
                 TxTContra.Focus();
                 return;
             }
-           if (!CbNumero.Checked)
+            if (!CbNumero.Checked)
             {
                 MessageBox.Show("Contraseña necesita un número como mínimo", ":(", MessageBoxButtons.OK);
                 TxTContra.Focus();
@@ -408,10 +370,10 @@ namespace FacturacionPE.Formularios
                 MessageBox.Show("Contraseña necesita un caracter especial como mínimo", ":(", MessageBoxButtons.OK);
                 TxTContra.Focus();
                 return;
-            }
-           if (!CbMinuscula.Checked)
+            }      
+            if (!CbMinimo.Checked)
             {
-                MessageBox.Show("Contraseña necesita una letra minuscula como mínimo", ":(", MessageBoxButtons.OK);
+                MessageBox.Show("La contraseña no tiene la longitud requerida", ":(", MessageBoxButtons.OK);
                 TxTContra.Focus();
                 return;
             }
@@ -428,6 +390,11 @@ namespace FacturacionPE.Formularios
 
         private void TxTContra_Leave(object sender, EventArgs e)
         {
+            if (TxTContra.Text.Trim() != string.Empty)
+            {
+                ValidarComplejidad();
+            }
+
             //Se esta usando ValidarDatosRequeridos()
 
             //ValidarComplejidad();
