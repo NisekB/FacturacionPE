@@ -106,8 +106,9 @@ namespace FacturacionPE.Formularios
                 {
                     //Solo si vamos agregar un usuario es obligatorio introducir una contraseña
                     if (!string.IsNullOrEmpty(TxTContra.Text.Trim()))
-                    {                   
-                            R = true;
+                    {
+                       
+                        R = true;
 
                     }
                 }
@@ -147,8 +148,9 @@ namespace FacturacionPE.Formularios
                 }
                 if (string.IsNullOrEmpty(TxTContra.Text.Trim()))
                 {
+                    //NO MUESTRA MENSAJE **********PREGUNTAR***********
                     MessageBox.Show("La Contraseña del Usuario es Requerida", "Error de validación", MessageBoxButtons.OK);
-                   TxTContra.Focus();
+                    TxTContra.Focus();
                     return false;
                 }
                 if (CboxTipoUsuario.SelectedIndex == -1)
@@ -378,7 +380,6 @@ namespace FacturacionPE.Formularios
                 return;
             }
 
-
         }
 
         private void TxTContra_TextChanged(object sender, EventArgs e)
@@ -394,10 +395,6 @@ namespace FacturacionPE.Formularios
             {
                 ValidarComplejidad();
             }
-
-            //Se esta usando ValidarDatosRequeridos()
-
-            //ValidarComplejidad();
         }
 
         private void BtnLimpiarForm_Click(object sender, EventArgs e)

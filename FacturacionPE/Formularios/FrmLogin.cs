@@ -121,8 +121,17 @@ namespace FacturacionPE.Formularios
 
         }
 
+        private void TxTContra_TextChanged(object sender, EventArgs e)
+        {
+            if (TxTContra.Text.Trim() != string.Empty)
+            {
+                PbVerPass.Visible = true;
 
-
-
+            }
+            else
+            {
+                PbVerPass.Visible = false;
+            }
+        }
     }
 }

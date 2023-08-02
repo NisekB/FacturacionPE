@@ -94,6 +94,7 @@
             this.TxTContra.TabIndex = 5;
             this.TxTContra.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TxTContra.UseSystemPasswordChar = true;
+            this.TxTContra.TextChanged += new System.EventHandler(this.TxTContra_TextChanged);
             // 
             // PbVerPass
             // 
@@ -105,6 +106,7 @@
             this.PbVerPass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PbVerPass.TabIndex = 6;
             this.PbVerPass.TabStop = false;
+            this.PbVerPass.Visible = false;
             this.PbVerPass.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PbVerPass_MouseDown);
             this.PbVerPass.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PbVerPass_MouseUp);
             // 

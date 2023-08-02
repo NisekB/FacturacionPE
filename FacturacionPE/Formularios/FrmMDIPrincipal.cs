@@ -28,6 +28,28 @@ namespace FacturacionPE.Formularios
 
         private void FrmMDIPrincipal_Load(object sender, EventArgs e)
         {
+            string UsuarioLog = string.Format("{0} ({1})", 
+                ObjetosGlobales.MiUsuarioGlobal.Nombre,
+                ObjetosGlobales.MiUsuarioGlobal.MiRol.Descripcion);
+
+            LblUsuarioLog.Text = UsuarioLog;
+
+            switch (ObjetosGlobales.MiUsuarioGlobal.MiRol.IDRol)
+            {
+                case 1:
+                    break;
+
+                case 2:
+
+                    MnuUsuariosGestion.Enabled = false;
+                    MnuProductosGestion.Enabled = false;
+                    MnuEmpresaGestion.Enabled = false;
+
+                    break;
+            }
+
+            TmrFecha.Enabled = true;
+
 
         }
 
@@ -52,6 +74,13 @@ namespace FacturacionPE.Formularios
         private void FrmMDIPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void TmrFecha_Tick(object sender, EventArgs e)
+        {
+            string Fecha = DateTime.Now.ToLongDateString() + " | " + DateTime.Now.ToShortTimeString();
+
+            LblFecha.Text = Fecha;
         }
     }
 }

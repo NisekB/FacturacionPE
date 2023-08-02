@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMDIPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mantenimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuUsuariosGestion = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuProductosGestion = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.empresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuEmpresaGestion = new System.Windows.Forms.ToolStripMenuItem();
             this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +51,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.LblUsuarioLog = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LblFecha = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TmrFecha = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -72,10 +75,10 @@
             // 
             this.mantenimientosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientesToolStripMenuItem,
-            this.usuariosToolStripMenuItem,
-            this.productosToolStripMenuItem,
+            this.MnuUsuariosGestion,
+            this.MnuProductosGestion,
             this.toolStripSeparator1,
-            this.empresaToolStripMenuItem});
+            this.MnuEmpresaGestion});
             this.mantenimientosToolStripMenuItem.Name = "mantenimientosToolStripMenuItem";
             this.mantenimientosToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             this.mantenimientosToolStripMenuItem.Text = "Mantenimientos";
@@ -87,30 +90,30 @@
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
-            // usuariosToolStripMenuItem
+            // MnuUsuariosGestion
             // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
-            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            this.MnuUsuariosGestion.Name = "MnuUsuariosGestion";
+            this.MnuUsuariosGestion.Size = new System.Drawing.Size(158, 26);
+            this.MnuUsuariosGestion.Text = "Usuarios";
+            this.MnuUsuariosGestion.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
-            // productosToolStripMenuItem
+            // MnuProductosGestion
             // 
-            this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
-            this.productosToolStripMenuItem.Text = "Productos";
-            this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
+            this.MnuProductosGestion.Name = "MnuProductosGestion";
+            this.MnuProductosGestion.Size = new System.Drawing.Size(158, 26);
+            this.MnuProductosGestion.Text = "Productos";
+            this.MnuProductosGestion.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
             // 
-            // empresaToolStripMenuItem
+            // MnuEmpresaGestion
             // 
-            this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
-            this.empresaToolStripMenuItem.Text = "Empresa";
+            this.MnuEmpresaGestion.Name = "MnuEmpresaGestion";
+            this.MnuEmpresaGestion.Size = new System.Drawing.Size(158, 26);
+            this.MnuEmpresaGestion.Text = "Empresa";
             // 
             // procesosToolStripMenuItem
             // 
@@ -192,8 +195,9 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.LblUsuarioLog});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 398);
+            this.LblUsuarioLog,
+            this.LblFecha});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 391);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1098, 29);
             this.statusStrip1.TabIndex = 3;
@@ -201,6 +205,7 @@
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(72, 23);
@@ -208,20 +213,33 @@
             // 
             // LblUsuarioLog
             // 
+            this.LblUsuarioLog.BackColor = System.Drawing.SystemColors.Control;
             this.LblUsuarioLog.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblUsuarioLog.Name = "LblUsuarioLog";
             this.LblUsuarioLog.Size = new System.Drawing.Size(22, 23);
             this.LblUsuarioLog.Text = "U";
             // 
+            // LblFecha
+            // 
+            this.LblFecha.BackColor = System.Drawing.SystemColors.Control;
+            this.LblFecha.Name = "LblFecha";
+            this.LblFecha.Size = new System.Drawing.Size(42, 23);
+            this.LblFecha.Text = "Hora";
+            // 
+            // TmrFecha
+            // 
+            this.TmrFecha.Interval = 1000;
+            this.TmrFecha.Tick += new System.EventHandler(this.TmrFecha_Tick);
+            // 
             // FrmMDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 427);
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ClientSize = new System.Drawing.Size(1098, 420);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMDIPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -243,10 +261,10 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mantenimientosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MnuUsuariosGestion;
+        private System.Windows.Forms.ToolStripMenuItem MnuProductosGestion;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem empresaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MnuEmpresaGestion;
         private System.Windows.Forms.ToolStripMenuItem procesosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
@@ -261,5 +279,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel LblUsuarioLog;
+        private System.Windows.Forms.ToolStripStatusLabel LblFecha;
+        private System.Windows.Forms.Timer TmrFecha;
     }
 }
