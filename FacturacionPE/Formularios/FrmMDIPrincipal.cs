@@ -82,5 +82,15 @@ namespace FacturacionPE.Formularios
 
             LblFecha.Text = Fecha;
         }
+
+        private void facturaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ObjetosGlobales.MiFormDeFacturacion.Visible)
+            {
+                ObjetosGlobales.MiFormDeFacturacion = new FrmFacturacion();
+                ObjetosGlobales.MiFormDeFacturacion.Show();
+            }
+
+        }
     }
 }

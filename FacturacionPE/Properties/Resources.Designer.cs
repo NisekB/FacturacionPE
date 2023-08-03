@@ -69,5 +69,45 @@ namespace FacturacionPE.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blue_iphone_wallpaper_1 {
+            get {
+                object obj = ResourceManager.GetObject("blue-iphone-wallpaper-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kisspng_human_eye_iris_clip_art_eye_5aca6352c9f0e3_4219947315232131388272 {
+            get {
+                object obj = ResourceManager.GetObject("kisspng-human-eye-iris-clip-art-eye-5aca6352c9f0e3.4219947315232131388272", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap personal {
+            get {
+                object obj = ResourceManager.GetObject("personal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_transparent_yoke_plow_oxen_yugo_agriculture_design_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("png-transparent-yoke-plow-oxen-yugo-agriculture-design-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

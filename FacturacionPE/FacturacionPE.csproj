@@ -52,6 +52,12 @@
     <Compile Include="Formularios\FrmClienteGestion.Designer.cs">
       <DependentUpon>FrmClienteGestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FrmFacturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmFacturacion.Designer.cs">
+      <DependentUpon>FrmFacturacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="Validacion.cs" />
     <EmbeddedResource Include="Formularios\FrmClienteGestion.resx">
       <DependentUpon>FrmClienteGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmFacturacion.resx">
+      <DependentUpon>FrmFacturacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -132,6 +141,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\650001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\png-transparent-yoke-plow-oxen-yugo-agriculture-design-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kisspng-human-eye-iris-clip-art-eye-5aca6352c9f0e3.4219947315232131388272.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\personal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue-iphone-wallpaper-1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
