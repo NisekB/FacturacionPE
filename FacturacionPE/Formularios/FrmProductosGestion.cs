@@ -15,6 +15,8 @@ namespace FacturacionPE.Formularios
 
         public Logica.Models.Producto MiProductoLocal { get; set; }
 
+        DataTable ListaProductos = new DataTable();
+
 
         public FrmProductosGestion()
         {
@@ -99,6 +101,7 @@ namespace FacturacionPE.Formularios
             TxtCantidad.Clear();
             TxTPrecio.Clear();
 
+
             CboxTipoImpuesto.SelectedIndex = -1;
             CboxTipoCategoria.SelectedIndex = -1;
 
@@ -109,6 +112,7 @@ namespace FacturacionPE.Formularios
         {
             LimpiarFormulario();
             ActivarAgregar();
+            
         }
 
         private void BtnCerrar_Click(object sender, EventArgs e)
@@ -334,6 +338,44 @@ namespace FacturacionPE.Formularios
 
                 }
             }
+        }
+
+        private void TxTBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            TmrBuscarProducto.Enabled = false;
+        }
+
+        private void TxTBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            TmrBuscarProducto.Enabled = true;
+        }
+
+        private void LlenarListaProducto(string Filtro = "")
+        {
+            ListaProductos = new DataTable();
+
+            ListaProductos = MiProductoLocal.Listar(true, Filtro);
+
+            DgvListaProductos.DataSource = ListaProductos;
+
+            DgvListaProductos.ClearSelection();
+        }
+
+        private void TmrBuscarProducto_Tick(object sender, EventArgs e)
+        {
+
+            TmrBuscarProducto.Enabled = false;
+
+            if (!string.IsNullOrEmpty(TxTBuscar.Text.Trim()))
+            {
+                string Filtro = TxTBuscar.Text.Trim();
+                LlenarListaProducto(Filtro);
+            }
+            else
+            {
+                LlenarListaProducto();
+            }
+
         }
     }
 }

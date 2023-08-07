@@ -288,14 +288,7 @@ namespace Logica.Models
         }
 
 
-        public DataTable Listar(bool VerActivos = true)
-        {
-            DataTable R = new DataTable();
-
-
-
-            return R;
-        }
+     
 
 
 

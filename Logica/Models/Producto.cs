@@ -168,6 +168,19 @@ namespace Logica.Models
 
         }
 
+        public DataTable Listar(bool VerActivos = true, string Filtro = "")
+        {
+            DataTable R = new DataTable();
+
+            Conexion MyCnn = new Conexion();
+
+            MyCnn.ListaParametros.Add(new SqlParameter("@filtro", Filtro));
+
+            R = MyCnn.EjecutarSelect("SpProductoListar");
+
+            return R;
+        }
+
         public DataTable ListarProductos(bool VerActivos = true)
         {
             DataTable R = new DataTable();

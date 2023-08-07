@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CboxTipoCategoria = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -56,6 +57,7 @@
             this.CCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TmrBuscarProducto = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaProductos)).BeginInit();
             this.SuspendLayout();
@@ -286,6 +288,8 @@
             this.TxTBuscar.Size = new System.Drawing.Size(358, 30);
             this.TxTBuscar.TabIndex = 15;
             this.TxTBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxTBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxTBuscar_KeyDown);
+            this.TxTBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxTBuscar_KeyUp);
             // 
             // label1
             // 
@@ -379,6 +383,11 @@
             this.CDescripcion.ReadOnly = true;
             this.CDescripcion.Width = 125;
             // 
+            // TmrBuscarProducto
+            // 
+            this.TmrBuscarProducto.Interval = 800;
+            this.TmrBuscarProducto.Tick += new System.EventHandler(this.TmrBuscarProducto_Tick);
+            // 
             // FrmProductosGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -434,5 +443,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPrecioUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn CDescripcion;
+        private System.Windows.Forms.Timer TmrBuscarProducto;
     }
 }

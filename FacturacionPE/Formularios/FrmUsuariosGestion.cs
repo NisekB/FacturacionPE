@@ -593,8 +593,6 @@ namespace FacturacionPE.Formularios
             DgvListaUsuarios.DataSource = ListaUsuarios;
 
             DgvListaUsuarios.ClearSelection();
-
-
         }
 
         private void TmrBuscarUsuario_Tick(object sender, EventArgs e)
