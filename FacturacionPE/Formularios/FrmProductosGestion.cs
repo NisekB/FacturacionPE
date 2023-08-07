@@ -24,6 +24,7 @@ namespace FacturacionPE.Formularios
 
         private void FrmProductosGestion_Load(object sender, EventArgs e)
         {
+
             MdiParent = ObjetosGlobales.MiFormularioPrincipal;
 
             ListarProductos();

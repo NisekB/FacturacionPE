@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logica.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,8 @@ namespace FacturacionPE.Formularios
     {
 
        public Logica.Models.Usuario MiUsuarioLocal { get; set; }
+
+        DataTable ListaUsuarios = new DataTable();
 
 
         public FrmUsuariosGestion()
@@ -35,6 +38,8 @@ namespace FacturacionPE.Formularios
             LimpiarFormulario();
 
             ActivarAgregar();
+
+            LlenarListaUsuarios();
 
         }
 
@@ -563,32 +568,48 @@ namespace FacturacionPE.Formularios
             }
         }
 
-        private void BuscarFiltro()
-        {
-            //***************************PREGUNTAR***************************
-
-            if (TxTBuscar.Text.Trim() != string.Empty)
-            {
-                string ValorPorBuscar = TxTBuscar.Text.Trim();
-
-                DataTable ListaFiltrada = new DataTable();
-                ListaFiltrada = MiUsuarioLocal.ListarConFiltro(ValorPorBuscar, CbVerActivos.Checked);
-
-                if (ListaFiltrada != null && ListaFiltrada.Rows.Count > 0)
-                {
-                    DgvListaUsuarios.DataSource = ListaFiltrada;
-                }
-                else
-                {
-                   // ListarUsuariosActivos(!CbVerActivos.Checked);
-                }
-
-            }
-        }
 
         private void TxTBuscar_TextChanged(object sender, EventArgs e)
         {
-            //BuscarFiltro();
+            
+        }
+
+        private void TxTBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            TmrBuscarUsuario.Enabled = false;
+        }
+
+        private void TxTBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            TmrBuscarUsuario.Enabled = true;
+        }
+
+        private void LlenarListaUsuarios(string Filtro = "")
+        {
+            ListaUsuarios = new DataTable();
+
+            ListaUsuarios = MiUsuarioLocal.Listar(true, Filtro);
+
+            DgvListaUsuarios.DataSource = ListaUsuarios;
+
+            DgvListaUsuarios.ClearSelection();
+
+
+        }
+
+        private void TmrBuscarUsuario_Tick(object sender, EventArgs e)
+        {
+            TmrBuscarUsuario.Enabled = false;
+
+            if (!string.IsNullOrEmpty(TxTBuscar.Text.Trim()))
+            {
+                string Filtro = TxTBuscar.Text.Trim();
+                LlenarListaUsuarios(Filtro);
+            }
+            else
+            {
+                LlenarListaUsuarios();
+            }
         }
     }
 }

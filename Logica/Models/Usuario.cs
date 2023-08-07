@@ -201,16 +201,6 @@ namespace Logica.Models
         }
 
 
-        public bool ConsultarPorID()
-        {
-            bool R = false;
-
-
-
-            return R;
-
-        }
-
         public Usuario ConsultarPorID(int pIDUsuario)
         {
            Usuario R = new Usuario();
@@ -264,6 +254,19 @@ namespace Logica.Models
             Conexion MiCnn = new Conexion();
 
             R = MiCnn.EjecutarSelect("SpUsuariosListarInactivos");
+
+            return R;
+        }
+
+        public DataTable Listar(bool VerActivos = true, string Filtro = "")
+        {
+            DataTable R = new DataTable();
+
+            Conexion MyCnn = new Conexion();
+
+            MyCnn.ListaParametros.Add(new SqlParameter("@filtro", Filtro));
+
+            R = MyCnn.EjecutarSelect("SpUsuarioListarActivos");
 
             return R;
         }

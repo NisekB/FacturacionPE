@@ -52,6 +52,12 @@
     <Compile Include="Formularios\FrmClienteGestion.Designer.cs">
       <DependentUpon>FrmClienteGestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FrmClienteListar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmClienteListar.Designer.cs">
+      <DependentUpon>FrmClienteListar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FrmFacturacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     <Compile Include="Validacion.cs" />
     <EmbeddedResource Include="Formularios\FrmClienteGestion.resx">
       <DependentUpon>FrmClienteGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmClienteListar.resx">
+      <DependentUpon>FrmClienteListar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmFacturacion.resx">
       <DependentUpon>FrmFacturacion.cs</DependentUpon>

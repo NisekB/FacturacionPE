@@ -18,10 +18,13 @@ namespace Logica.Models
         public string LogoEmpresa { get; set; }
 
 
-        public DataTable Listar(bool VerActivos = true)
+        public DataTable Listar()
         {
             DataTable R = new DataTable();
 
+            Conexion MyCnn = new Conexion();
+
+            R = MyCnn.EjecutarSelect("SpEmpresasListar");
 
 
             return R;

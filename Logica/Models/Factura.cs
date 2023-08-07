@@ -21,10 +21,10 @@ namespace Logica.Models
         public string Anotaciones { get; set; }
 
 
-        TipoFactura MiTipo { get; set; }
-        Empresa MiEmpresa { get; set; }
-        Cliente MiCliente { get; set; }
-        Usuario MiUsuario { get; set; }
+        public TipoFactura MiTipo { get; set; }
+        public Empresa MiEmpresa { get; set; }
+        public Cliente MiCliente { get; set; }
+        public Usuario MiUsuario { get; set; }
 
 
         public List<FacturaDetalle> DetalleItems { get; set; }
@@ -81,6 +81,20 @@ namespace Logica.Models
         {
 
 
+        }
+
+        public DataTable AsignarEsquemaDetalle()
+        {
+            DataTable R = new DataTable();
+
+
+            Conexion MyCnn = new Conexion();
+            R = MyCnn.EjecutarSelect("SpFacturasDetalleEsquema", true);
+
+            R.PrimaryKey = null;
+
+
+            return R;
         }
 
 

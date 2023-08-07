@@ -86,33 +86,33 @@
             // MnuClientes
             // 
             this.MnuClientes.Name = "MnuClientes";
-            this.MnuClientes.Size = new System.Drawing.Size(224, 26);
+            this.MnuClientes.Size = new System.Drawing.Size(158, 26);
             this.MnuClientes.Text = "Clientes";
             this.MnuClientes.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // MnuUsuariosGestion
             // 
             this.MnuUsuariosGestion.Name = "MnuUsuariosGestion";
-            this.MnuUsuariosGestion.Size = new System.Drawing.Size(224, 26);
+            this.MnuUsuariosGestion.Size = new System.Drawing.Size(158, 26);
             this.MnuUsuariosGestion.Text = "Usuarios";
             this.MnuUsuariosGestion.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // MnuProductosGestion
             // 
             this.MnuProductosGestion.Name = "MnuProductosGestion";
-            this.MnuProductosGestion.Size = new System.Drawing.Size(224, 26);
+            this.MnuProductosGestion.Size = new System.Drawing.Size(158, 26);
             this.MnuProductosGestion.Text = "Productos";
             this.MnuProductosGestion.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
             // 
             // MnuEmpresaGestion
             // 
             this.MnuEmpresaGestion.Name = "MnuEmpresaGestion";
-            this.MnuEmpresaGestion.Size = new System.Drawing.Size(224, 26);
+            this.MnuEmpresaGestion.Size = new System.Drawing.Size(158, 26);
             this.MnuEmpresaGestion.Text = "Empresa";
             // 
             // procesosToolStripMenuItem
@@ -126,6 +126,7 @@
             // MnuFacturacion
             // 
             this.MnuFacturacion.Name = "MnuFacturacion";
+            this.MnuFacturacion.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.MnuFacturacion.Size = new System.Drawing.Size(224, 26);
             this.MnuFacturacion.Text = "Facturación";
             this.MnuFacturacion.Click += new System.EventHandler(this.facturaciónToolStripMenuItem_Click);
@@ -246,6 +247,7 @@
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMDIPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

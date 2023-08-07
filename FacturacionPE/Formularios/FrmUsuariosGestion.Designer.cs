@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.DgvListaUsuarios = new System.Windows.Forms.DataGridView();
             this.CIDUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +66,7 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnLimpiarForm = new System.Windows.Forms.Button();
             this.BtnCerrar = new System.Windows.Forms.Button();
+            this.TmrBuscarUsuario = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaUsuarios)).BeginInit();
             this.GbDetalles.SuspendLayout();
             this.SuspendLayout();
@@ -419,6 +421,8 @@
             this.TxTBuscar.TabIndex = 4;
             this.TxTBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TxTBuscar.TextChanged += new System.EventHandler(this.TxTBuscar_TextChanged);
+            this.TxTBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxTBuscar_KeyDown);
+            this.TxTBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxTBuscar_KeyUp);
             // 
             // CbVerActivos
             // 
@@ -490,6 +494,11 @@
             this.BtnCerrar.UseVisualStyleBackColor = false;
             this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
+            // TmrBuscarUsuario
+            // 
+            this.TmrBuscarUsuario.Interval = 800;
+            this.TmrBuscarUsuario.Tick += new System.EventHandler(this.TmrBuscarUsuario_Tick);
+            // 
             // FrmUsuariosGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -557,5 +566,6 @@
         private System.Windows.Forms.CheckBox CbMayuscula;
         private System.Windows.Forms.CheckBox CbMinimo;
         private System.Windows.Forms.Button BtnVerContra;
+        private System.Windows.Forms.Timer TmrBuscarUsuario;
     }
 }

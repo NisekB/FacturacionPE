@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,11 +78,15 @@ namespace Logica.Models
 
 
 
-        public DataTable Listar(bool VerActivos = true)
+        public DataTable Listar(bool VerActivos = true, string Filtro = "")
         {
             DataTable R = new DataTable();
 
+            Conexion MyCnn = new Conexion();
 
+            MyCnn.ListaParametros.Add(new SqlParameter("@filtro", Filtro));
+
+            R = MyCnn.EjecutarSelect("SpClientesListar");
 
             return R;
         }
