@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -165,6 +166,46 @@ namespace Logica.Models
 
 
             return R;
+
+
+        }
+
+
+        public Producto ConsultarID(int pIDProducto)
+        {
+            Producto R = new Producto();
+
+            Conexion MyCnn = new Conexion();
+
+            MyCnn.ListaParametros.Add(new SqlParameter("@ID", pIDProducto));
+
+            DataTable Datos = new DataTable();
+
+            Datos = MyCnn.EjecutarSelect("SpProductoConsultarID");
+
+            if (Datos != null && Datos.Rows.Count > 0)
+            {
+                DataRow MisDatos = Datos.Rows[0];
+                R.IDProducto = Convert.ToInt32(MisDatos["IDProducto"]);
+                R.CodigoBarras = Convert.ToString(MisDatos["CodigoDeBarras"]);
+                R.DescripcionProducto = Convert.ToString(MisDatos["DescripcionProducto"]);
+                R.Cantidad = Convert.ToDecimal(MisDatos["Cantidad"]);
+                R.PrecioUnitario = Convert.ToDecimal(MisDatos["PrecioUnitario"]);
+           
+                R.MiImpuesto.IDImpuesto = Convert.ToInt32(MisDatos["IDImpuesto"]);
+                R.MiCategoria.IDProductoCategoria = Convert.ToInt32(MisDatos["IDProductoCategoria"]);
+
+                R.MiCategoria.Descripcion = Convert.ToString(MisDatos["CategoriaDescripcion"]);
+                R.MiImpuesto.codigoImpuesto = Convert.ToString(MisDatos["CodigoImpuesto"]);
+                R.MiImpuesto.Descripcion = Convert.ToString(MisDatos["ImpuestoDescripcion"]);
+                R.MiImpuesto.MontoImpuesto = Convert.ToDecimal(MisDatos["MontoImpuesto"]);
+             
+
+            }
+
+
+            return R;
+
 
         }
 

@@ -389,9 +389,12 @@ namespace FacturacionPE.Formularios
 
         private void TxTContra_TextChanged(object sender, EventArgs e)
         {
+           
 
             ValidacionParaContraseñas(TxTContra.Text);
-                     
+
+            
+
         }
 
         private void TxTContra_Leave(object sender, EventArgs e)

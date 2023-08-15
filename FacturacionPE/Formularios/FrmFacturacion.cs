@@ -117,5 +117,73 @@ namespace FacturacionPE.Formularios
                 LblNombreCliente.Text = "";
             }
         }
+
+        private void BtnItemModificar_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void BtnItemAgregar_Click(object sender, EventArgs e)
+        {
+            Form FormSeleccionProductos = new Formularios.FrmFacturacionItemGestion();
+
+            DialogResult Respuesta = FormSeleccionProductos.ShowDialog();
+
+            if (Respuesta == DialogResult.OK)
+            {
+                DgvListaItems.DataSource = ListaDetallesLocal;
+
+                TotalizarFactura();
+
+            }
+
+        }
+
+        private void TotalizarFactura()
+        {
+            if (ListaDetallesLocal != null && ListaDetallesLocal.Rows.Count > 0)
+            {
+                decimal Subtotal = 0;
+                decimal Descuentos = 0;
+                decimal Impuestos = 0;
+                decimal Total = 0;
+
+                foreach (DataRow item in ListaDetallesLocal.Rows)
+                {
+                    Subtotal += Convert.ToDecimal(item["CantidadFacturada"]) * Convert.ToDecimal(item["PrecioUnitario"]);
+                    Descuentos += Subtotal * Convert.ToDecimal(item["PorcentajeDescuento"]) / 100;
+                    Impuestos += Convert.ToDecimal(item["ImpuestosLinea"]);
+                    Total += Convert.ToDecimal(item["TotalLinea"]);
+                }
+
+                LblSubTotal.Text = string.Format("{0:C2}", Subtotal);
+                LblDescuentos.Text = string.Format("{0:C2}", Descuentos);
+                LblImpuestos.Text = string.Format("{0:C2}", Impuestos);
+                LblTotal.Text = string.Format("{0:C2}", Total);
+            }
+        }
+
+        private void CargarDetalleDeLaFactura()
+        {
+            foreach (DataRow item in ListaDetallesLocal.Rows)
+            {
+
+            }
+        }
+
+        private void BtnFacturar_Click(object sender, EventArgs e)
+        {
+            if (ListaDetallesLocal != null && ListaDetallesLocal.Rows.Count > 0)
+            {
+
+                FacturaLocal.MiCliente.IDCliente = Convert.ToInt32(TxTIDCliente.Text.Trim());
+                FacturaLocal.MiTipo.IDFacturaTIpo = Convert.ToInt32(CboxTipoFactura.SelectedValue);
+                FacturaLocal.MiUsuario.IDUsuario = Convert.ToInt32(CboxUsuario.SelectedValue);
+                FacturaLocal.MiEmpresa.IDEmpresa = Convert.ToInt32(CboxEmpresa.SelectedValue);
+                FacturaLocal.Fecha = DtpFechaFactura.Value.Date;
+                FacturaLocal.Anotaciones = TxTNotas.Text.Trim();
+
+            }
+        }
     }
 }

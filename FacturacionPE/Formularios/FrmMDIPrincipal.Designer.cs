@@ -48,10 +48,10 @@
             this.facturaciónPorClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónPorUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSTHORA = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.LblUsuarioLog = new System.Windows.Forms.ToolStripStatusLabel();
-            this.LblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.TmrFecha = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -64,10 +64,11 @@
             this.mantenimientosToolStripMenuItem,
             this.procesosToolStripMenuItem,
             this.reportesToolStripMenuItem,
-            this.acercaDeToolStripMenuItem});
+            this.acercaDeToolStripMenuItem,
+            this.TSTHORA});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1098, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1098, 32);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -80,7 +81,7 @@
             this.toolStripSeparator1,
             this.MnuEmpresaGestion});
             this.mantenimientosToolStripMenuItem.Name = "mantenimientosToolStripMenuItem";
-            this.mantenimientosToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.mantenimientosToolStripMenuItem.Size = new System.Drawing.Size(130, 28);
             this.mantenimientosToolStripMenuItem.Text = "Mantenimientos";
             // 
             // MnuClientes
@@ -120,14 +121,14 @@
             this.procesosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnuFacturacion});
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
-            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(81, 28);
             this.procesosToolStripMenuItem.Text = "Procesos";
             // 
             // MnuFacturacion
             // 
             this.MnuFacturacion.Name = "MnuFacturacion";
             this.MnuFacturacion.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.MnuFacturacion.Size = new System.Drawing.Size(224, 26);
+            this.MnuFacturacion.Size = new System.Drawing.Size(216, 26);
             this.MnuFacturacion.Text = "Facturación";
             this.MnuFacturacion.Click += new System.EventHandler(this.facturaciónToolStripMenuItem_Click);
             // 
@@ -142,7 +143,7 @@
             this.facturaciónPorClienteToolStripMenuItem,
             this.facturaciónPorUsuariosToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(82, 28);
             this.reportesToolStripMenuItem.Text = "Reportes";
             // 
             // listadoDeClientesToolStripMenuItem
@@ -189,16 +190,27 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(98, 28);
             this.acercaDeToolStripMenuItem.Text = "Acerca de...";
+            // 
+            // TSTHORA
+            // 
+            this.TSTHORA.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.TSTHORA.AutoToolTip = true;
+            this.TSTHORA.Enabled = false;
+            this.TSTHORA.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TSTHORA.ForeColor = System.Drawing.Color.Transparent;
+            this.TSTHORA.Name = "TSTHORA";
+            this.TSTHORA.ReadOnly = true;
+            this.TSTHORA.Size = new System.Drawing.Size(350, 28);
+            this.TSTHORA.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.LblUsuarioLog,
-            this.LblFecha});
+            this.LblUsuarioLog});
             this.statusStrip1.Location = new System.Drawing.Point(0, 391);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1098, 29);
@@ -221,16 +233,6 @@
             this.LblUsuarioLog.Size = new System.Drawing.Size(22, 23);
             this.LblUsuarioLog.Text = "U";
             this.LblUsuarioLog.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // LblFecha
-            // 
-            this.LblFecha.BackColor = System.Drawing.SystemColors.Control;
-            this.LblFecha.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.LblFecha.Name = "LblFecha";
-            this.LblFecha.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.LblFecha.Size = new System.Drawing.Size(42, 23);
-            this.LblFecha.Text = "Hora";
-            this.LblFecha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TmrFecha
             // 
@@ -287,7 +289,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel LblUsuarioLog;
-        private System.Windows.Forms.ToolStripStatusLabel LblFecha;
         private System.Windows.Forms.Timer TmrFecha;
+        private System.Windows.Forms.ToolStripTextBox TSTHORA;
     }
 }

@@ -79,8 +79,8 @@ namespace FacturacionPE.Formularios
         private void TmrFecha_Tick(object sender, EventArgs e)
         {
             string Fecha = DateTime.Now.ToLongDateString() + " | " + DateTime.Now.ToShortTimeString();
-
-            LblFecha.Text = Fecha;
+         
+            TSTHORA.Text = Fecha;
         }
 
         private void facturaciónToolStripMenuItem_Click(object sender, EventArgs e)
