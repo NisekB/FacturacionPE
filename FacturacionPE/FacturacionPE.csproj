@@ -70,6 +70,12 @@
     <Compile Include="Formularios\FrmFacturacionItemGestion.Designer.cs">
       <DependentUpon>FrmFacturacionItemGestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FrmFacturaciónItemGestionCantidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmFacturaciónItemGestionCantidad.Designer.cs">
+      <DependentUpon>FrmFacturaciónItemGestionCantidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmFacturacionItemGestion.resx">
       <DependentUpon>FrmFacturacionItemGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmFacturaciónItemGestionCantidad.resx">
+      <DependentUpon>FrmFacturaciónItemGestionCantidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

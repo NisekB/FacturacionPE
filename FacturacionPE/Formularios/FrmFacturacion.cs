@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logica.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -120,7 +121,19 @@ namespace FacturacionPE.Formularios
 
         private void BtnItemModificar_Click(object sender, EventArgs e)
         {
-           
+                     
+            if (DgvListaItems.SelectedRows.Count == 1)
+            {
+                Form MiFrm = new FrmFacturaciónItemGestionCantidad();
+                DialogResult cambio = MiFrm.ShowDialog();
+                if (cambio == DialogResult.OK)
+                {
+                    DgvListaItems.DataSource = ListaDetallesLocal;
+                    TotalizarFactura();
+                }
+                
+            }
+                
         }
 
         private void BtnItemAgregar_Click(object sender, EventArgs e)
@@ -167,6 +180,19 @@ namespace FacturacionPE.Formularios
         {
             foreach (DataRow item in ListaDetallesLocal.Rows)
             {
+                Logica.Models.FacturaDetalle Detalle = new Logica.Models.FacturaDetalle();
+
+                Detalle.MiProducto.IDProducto = Convert.ToInt32(item["IDProducto"]);
+                Detalle.DescripcionProducto = Convert.ToString(item["DescripcionProducto"]);
+                Detalle.CantidadFacturada = Convert.ToDecimal(item["CantidadFacturada"]);
+                Detalle.PrecioUnitario = Convert.ToDecimal(item["PrecioUnitario"]);
+                Detalle.PorcentajeDescuento = Convert.ToDecimal(item["PorcentajeDescuento"]);
+                Detalle.ImpuestoLinea = Convert.ToDecimal(item["ImpuestosLinea"]);
+                Detalle.SubTotalLinea = Convert.ToDecimal(item["SubTotalLinea"]);
+                Detalle.TotalLinea = Convert.ToDecimal(item["TotalLinea"]);
+
+                FacturaLocal.DetalleItems.Add(Detalle);
+
 
             }
         }
@@ -175,14 +201,58 @@ namespace FacturacionPE.Formularios
         {
             if (ListaDetallesLocal != null && ListaDetallesLocal.Rows.Count > 0)
             {
+                string UsuarioLog = string.Format("{0}",
+                ObjetosGlobales.MiUsuarioGlobal.Nombre);
 
-                FacturaLocal.MiCliente.IDCliente = Convert.ToInt32(TxTIDCliente.Text.Trim());
-                FacturaLocal.MiTipo.IDFacturaTIpo = Convert.ToInt32(CboxTipoFactura.SelectedValue);
-                FacturaLocal.MiUsuario.IDUsuario = Convert.ToInt32(CboxUsuario.SelectedValue);
-                FacturaLocal.MiEmpresa.IDEmpresa = Convert.ToInt32(CboxEmpresa.SelectedValue);
-                FacturaLocal.Fecha = DtpFechaFactura.Value.Date;
-                FacturaLocal.Anotaciones = TxTNotas.Text.Trim();
+                string Pregunta = String.Format("{0} Estás seguro que deseas generar una nueva factura?", UsuarioLog);
+                DialogResult RespuestaDelUsuario = MessageBox.Show(Pregunta, "Deseas continuar???", MessageBoxButtons.YesNo);
 
+                if (RespuestaDelUsuario == DialogResult.Yes)
+                {
+                    FacturaLocal.MiCliente.IDCliente = Convert.ToInt32(TxTIDCliente.Text.Trim());
+                    FacturaLocal.MiTipo.IDFacturaTIpo = Convert.ToInt32(CboxTipoFactura.SelectedValue);
+                    FacturaLocal.MiUsuario.IDUsuario = Convert.ToInt32(CboxUsuario.SelectedValue);
+                    FacturaLocal.MiEmpresa.IDEmpresa = Convert.ToInt32(CboxEmpresa.SelectedValue);
+                    FacturaLocal.Fecha = DtpFechaFactura.Value.Date;
+                    FacturaLocal.Anotaciones = TxTNotas.Text.Trim();
+
+                    CargarDetalleDeLaFactura();
+
+                    if (FacturaLocal.Agregar())
+                    {
+                        MessageBox.Show("La Factura a sido generada correctamente", "=D", MessageBoxButtons.OK);
+                        LimpiarFormulario();
+                    }
+
+                }
+
+                
+
+
+            }
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            if (DgvListaItems.SelectedRows.Count == 1)
+            {
+                int Indice = DgvListaItems.SelectedRows[0].Index;
+                int IDProducto = Convert.ToInt32(DgvListaItems.Rows[Indice].Cells["CIDProducto"].Value);
+
+                foreach (DataRow item in ListaDetallesLocal.Rows)
+                {
+                    int idx = Convert.ToInt32(item["IDProducto"]);
+                    if (idx == IDProducto)
+                    {
+                        ListaDetallesLocal.Rows.Remove(item);
+                        TotalizarFactura();
+                        break;
+                    }
+                }
+                ListaDetallesLocal.AcceptChanges();
+
+                DgvListaItems.DataSource = ListaDetallesLocal;
+                DgvListaItems.ClearSelection();
             }
         }
     }

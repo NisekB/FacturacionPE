@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.TxTBuscarCliente = new System.Windows.Forms.TextBox();
@@ -40,6 +40,8 @@
             this.CPrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxTPrecioFinal = new System.Windows.Forms.TextBox();
+            this.PrecioFinal = new System.Windows.Forms.Label();
             this.TxTIVA = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.TxTPrecioUnidad = new System.Windows.Forms.TextBox();
@@ -49,8 +51,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxTCantidad = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.TxTPrecioFinal = new System.Windows.Forms.TextBox();
-            this.PrecioFinal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaProductos)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxTCantidad)).BeginInit();
@@ -110,14 +110,14 @@
             this.DgvListaProductos.MultiSelect = false;
             this.DgvListaProductos.Name = "DgvListaProductos";
             this.DgvListaProductos.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvListaProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvListaProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvListaProductos.RowHeadersVisible = false;
             this.DgvListaProductos.RowHeadersWidth = 51;
             this.DgvListaProductos.RowTemplate.Height = 24;
@@ -204,6 +204,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Opciones...";
             // 
+            // TxTPrecioFinal
+            // 
+            this.TxTPrecioFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxTPrecioFinal.Location = new System.Drawing.Point(655, 57);
+            this.TxTPrecioFinal.Name = "TxTPrecioFinal";
+            this.TxTPrecioFinal.ReadOnly = true;
+            this.TxTPrecioFinal.Size = new System.Drawing.Size(158, 30);
+            this.TxTPrecioFinal.TabIndex = 10;
+            this.TxTPrecioFinal.Text = "0";
+            this.TxTPrecioFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // PrecioFinal
+            // 
+            this.PrecioFinal.AutoSize = true;
+            this.PrecioFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrecioFinal.Location = new System.Drawing.Point(676, 32);
+            this.PrecioFinal.Name = "PrecioFinal";
+            this.PrecioFinal.Size = new System.Drawing.Size(119, 22);
+            this.PrecioFinal.TabIndex = 9;
+            this.PrecioFinal.Text = "Precio Total";
+            // 
             // TxTIVA
             // 
             this.TxTIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -286,6 +307,12 @@
             this.TxTCantidad.Name = "TxTCantidad";
             this.TxTCantidad.Size = new System.Drawing.Size(133, 30);
             this.TxTCantidad.TabIndex = 1;
+            this.TxTCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxTCantidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label1
             // 
@@ -296,27 +323,6 @@
             this.label1.Size = new System.Drawing.Size(110, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "CANTIDAD";
-            // 
-            // TxTPrecioFinal
-            // 
-            this.TxTPrecioFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxTPrecioFinal.Location = new System.Drawing.Point(655, 57);
-            this.TxTPrecioFinal.Name = "TxTPrecioFinal";
-            this.TxTPrecioFinal.ReadOnly = true;
-            this.TxTPrecioFinal.Size = new System.Drawing.Size(158, 30);
-            this.TxTPrecioFinal.TabIndex = 10;
-            this.TxTPrecioFinal.Text = "0";
-            this.TxTPrecioFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // PrecioFinal
-            // 
-            this.PrecioFinal.AutoSize = true;
-            this.PrecioFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrecioFinal.Location = new System.Drawing.Point(676, 32);
-            this.PrecioFinal.Name = "PrecioFinal";
-            this.PrecioFinal.Size = new System.Drawing.Size(119, 22);
-            this.PrecioFinal.TabIndex = 9;
-            this.PrecioFinal.Text = "Precio Total";
             // 
             // FrmFacturacionItemGestion
             // 

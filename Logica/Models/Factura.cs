@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,54 @@ namespace Logica.Models
         {
             bool R = false;
 
+            Conexion MyCnn = new Conexion();
+
+            Totalizar();
+
+            MyCnn.ListaParametros.Add(new SqlParameter("@NumeroFactura", this.NumeroFactura));
+            MyCnn.ListaParametros.Add(new SqlParameter("@Fecha", this.Fecha));
+            MyCnn.ListaParametros.Add(new SqlParameter("@SubTotal", this.Subtotal));
+            MyCnn.ListaParametros.Add(new SqlParameter("@Descuentos", this.Descuentos));
+            MyCnn.ListaParametros.Add(new SqlParameter("@SubTotal2", this.Subtotal2));
+            MyCnn.ListaParametros.Add(new SqlParameter("@Impuestos", this.Impuestos));
+            MyCnn.ListaParametros.Add(new SqlParameter("@Total", this.Total));
+            MyCnn.ListaParametros.Add(new SqlParameter("@Anotaciones", this.Anotaciones));
+
+            MyCnn.ListaParametros.Add(new SqlParameter("@IDTipo", this.MiTipo.IDFacturaTipo));
+            MyCnn.ListaParametros.Add(new SqlParameter("@IDCliente", this.MiCliente.IDCliente));
+            MyCnn.ListaParametros.Add(new SqlParameter("@IDUsuario", this.MiUsuario.IDUsuario));
+            MyCnn.ListaParametros.Add(new SqlParameter("@IDEmpresa", this.MiEmpresa.IDEmpresa));
+
+            Object Retorno = MyCnn.EjecutarConRetornoEscalar("SpFacturaAgregarEncabezado");
+
+            int IDFacturaRecienCreada = 0;
+
+            if (Retorno != null)
+            {
+                IDFacturaRecienCreada = Convert.ToInt32(Retorno.ToString());
+
+                foreach (FacturaDetalle item in this.DetalleItems)
+                {
+
+                    Conexion MyCnnDetalles = new Conexion();
+
+                    MyCnnDetalles.ListaParametros.Add(new SqlParameter("@IDFactura", IDFacturaRecienCreada));
+                    MyCnnDetalles.ListaParametros.Add(new SqlParameter("@IDProducto", item.MiProducto.IDProducto));
+                    MyCnnDetalles.ListaParametros.Add(new SqlParameter("@Descripcion", item.DescripcionProducto));
+                    MyCnnDetalles.ListaParametros.Add(new SqlParameter("@CantidadFacturada", item.CantidadFacturada));
+                    MyCnnDetalles.ListaParametros.Add(new SqlParameter("@PrecioUnitario", item.PrecioUnitario));
+                    MyCnnDetalles.ListaParametros.Add(new SqlParameter("@PorcentajeDescuento", item.PorcentajeDescuento));
+                    MyCnnDetalles.ListaParametros.Add(new SqlParameter("@SubTotalLinea", item.SubTotalLinea));
+                    MyCnnDetalles.ListaParametros.Add(new SqlParameter("@ImpuestosLinea", item.ImpuestoLinea));
+                    MyCnnDetalles.ListaParametros.Add(new SqlParameter("@TotalLinea", item.TotalLinea));
+          
+
+                    MyCnnDetalles.EjecutarUpdateDeleteInsert("SpFacturaAgregarDetalle");
+
+                }
+                R = true;
+            }
+
 
 
             return R;
@@ -79,7 +128,12 @@ namespace Logica.Models
 
         private void Totalizar()
         {
+            this.NumeroFactura = 1;
 
+            this.Subtotal = 0;
+            this.Subtotal2 = 0;
+            this.Descuentos = 0;
+            this.Total = 0;
 
         }
 

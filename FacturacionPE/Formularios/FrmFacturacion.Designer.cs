@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFacturacion));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -62,6 +62,7 @@
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnItemModificar = new System.Windows.Forms.Button();
+            this.BtnItemAgregar = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.LblTotal = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.BtnItemAgregar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.PanEncabezado.SuspendLayout();
@@ -333,14 +333,14 @@
             this.CSubTotalLinea,
             this.CImpuestosLinea,
             this.CTotalLinea});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvListaItems.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvListaItems.DefaultCellStyle = dataGridViewCellStyle1;
             this.DgvListaItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvListaItems.Location = new System.Drawing.Point(3, 153);
             this.DgvListaItems.Name = "DgvListaItems";
@@ -481,6 +481,7 @@
             this.BtnEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnEliminar.UseVisualStyleBackColor = false;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // BtnItemModificar
             // 
@@ -499,6 +500,24 @@
             this.BtnItemModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnItemModificar.UseVisualStyleBackColor = false;
             this.BtnItemModificar.Click += new System.EventHandler(this.BtnItemModificar_Click);
+            // 
+            // BtnItemAgregar
+            // 
+            this.BtnItemAgregar.BackColor = System.Drawing.Color.Green;
+            this.BtnItemAgregar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnItemAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnItemAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
+            this.BtnItemAgregar.ForeColor = System.Drawing.Color.White;
+            this.BtnItemAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnItemAgregar.Image")));
+            this.BtnItemAgregar.Location = new System.Drawing.Point(3, 3);
+            this.BtnItemAgregar.Name = "BtnItemAgregar";
+            this.BtnItemAgregar.Size = new System.Drawing.Size(153, 99);
+            this.BtnItemAgregar.TabIndex = 4;
+            this.BtnItemAgregar.Text = "Agregar";
+            this.BtnItemAgregar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnItemAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnItemAgregar.UseVisualStyleBackColor = false;
+            this.BtnItemAgregar.Click += new System.EventHandler(this.BtnItemAgregar_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -679,24 +698,6 @@
             this.label9.TabIndex = 3;
             this.label9.Text = "TOTAL";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BtnItemAgregar
-            // 
-            this.BtnItemAgregar.BackColor = System.Drawing.Color.Green;
-            this.BtnItemAgregar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnItemAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnItemAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
-            this.BtnItemAgregar.ForeColor = System.Drawing.Color.White;
-            this.BtnItemAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnItemAgregar.Image")));
-            this.BtnItemAgregar.Location = new System.Drawing.Point(3, 3);
-            this.BtnItemAgregar.Name = "BtnItemAgregar";
-            this.BtnItemAgregar.Size = new System.Drawing.Size(153, 99);
-            this.BtnItemAgregar.TabIndex = 4;
-            this.BtnItemAgregar.Text = "Agregar";
-            this.BtnItemAgregar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnItemAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.BtnItemAgregar.UseVisualStyleBackColor = false;
-            this.BtnItemAgregar.Click += new System.EventHandler(this.BtnItemAgregar_Click);
             // 
             // FrmFacturacion
             // 
