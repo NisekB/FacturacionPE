@@ -45,11 +45,11 @@ namespace FacturacionPE.Formularios
 
                 ChangeLineaDetalleEnFacturacion["CantidadFacturada"] = TxTCantidad.Value;
 
+                //DataGridViewRows newDataRow = ObjetosGlobales.ObjetosGlobales.MiFormDeFacturacion.ListaDetallesLocal.Rows[indexRow];
+                //ObjetosGlobales.MiFormDeFacturacion.ListaDetallesLocal.Cell[3].Value = TxTCantidad.Value;
 
                 ObjetosGlobales.MiFormDeFacturacion.ListaDetallesLocal.Rows.Add(ChangeLineaDetalleEnFacturacion);
                 DialogResult = DialogResult.OK;
-
-
 
             }
         }
