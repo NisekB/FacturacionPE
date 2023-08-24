@@ -33,11 +33,12 @@
             this.DgvLista = new System.Windows.Forms.DataGridView();
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.BtnCancelar = new System.Windows.Forms.Button();
+            this.TmrBuscarCliente = new System.Windows.Forms.Timer(this.components);
             this.CIDCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TmrBuscarCliente = new System.Windows.Forms.Timer(this.components);
+            this.CDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvLista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +63,8 @@
             this.CIDCliente,
             this.CNombre,
             this.CCedula,
-            this.CTelefono});
+            this.CTelefono,
+            this.CDescripcion});
             this.DgvLista.Location = new System.Drawing.Point(12, 64);
             this.DgvLista.MultiSelect = false;
             this.DgvLista.Name = "DgvLista";
@@ -104,14 +106,20 @@
             this.BtnCancelar.UseVisualStyleBackColor = false;
             this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
+            // TmrBuscarCliente
+            // 
+            this.TmrBuscarCliente.Interval = 800;
+            this.TmrBuscarCliente.Tick += new System.EventHandler(this.TmrBuscarCliente_Tick);
+            // 
             // CIDCliente
             // 
+            this.CIDCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.CIDCliente.DataPropertyName = "IDCliente";
             this.CIDCliente.HeaderText = "Código Cliente";
             this.CIDCliente.MinimumWidth = 6;
             this.CIDCliente.Name = "CIDCliente";
             this.CIDCliente.ReadOnly = true;
-            this.CIDCliente.Width = 125;
+            this.CIDCliente.Width = 80;
             // 
             // CNombre
             // 
@@ -140,10 +148,14 @@
             this.CTelefono.ReadOnly = true;
             this.CTelefono.Width = 125;
             // 
-            // TmrBuscarCliente
+            // CDescripcion
             // 
-            this.TmrBuscarCliente.Interval = 800;
-            this.TmrBuscarCliente.Tick += new System.EventHandler(this.TmrBuscarCliente_Tick);
+            this.CDescripcion.DataPropertyName = "Descripcion";
+            this.CDescripcion.HeaderText = "Tipo Cliente";
+            this.CDescripcion.MinimumWidth = 6;
+            this.CDescripcion.Name = "CDescripcion";
+            this.CDescripcion.ReadOnly = true;
+            this.CDescripcion.Width = 125;
             // 
             // FrmClienteListar
             // 
@@ -172,10 +184,11 @@
         private System.Windows.Forms.DataGridView DgvLista;
         private System.Windows.Forms.Button BtnAceptar;
         private System.Windows.Forms.Button BtnCancelar;
+        private System.Windows.Forms.Timer TmrBuscarCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIDCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn CCedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn CTelefono;
-        private System.Windows.Forms.Timer TmrBuscarCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CDescripcion;
     }
 }

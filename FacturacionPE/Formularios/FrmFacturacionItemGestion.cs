@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FacturacionPE.Formularios
 {
@@ -39,7 +40,7 @@ namespace FacturacionPE.Formularios
         private void LlenarListaProductos(string Filtro = "")
         {
             ListaProductos = new DataTable();
-            ListaProductos = MiProducto.Listar();
+            ListaProductos = MiProducto.Listar(true, Filtro);
 
             DgvListaProductos.DataSource = ListaProductos;
             DgvListaProductos.ClearSelection();
@@ -174,12 +175,41 @@ namespace FacturacionPE.Formularios
 
         private void TxTDescuento_Leave(object sender, EventArgs e)
         {
-            //if (TxTDescuento.Value > 100)
-            //{
-             //   MessageBox.Show("Solo se puede seleccionar un descuento entre 0 y 100!", "Error de Validación", MessageBoxButtons.OK);
-             //   TxTDescuento.Focus();
-            //    TxTDescuento.SelectAll();
-           // }
+            if (int.TryParse(TxTDescuento.Text, out int value))
+            {
+                if (value > 100)
+                {
+                    MessageBox.Show("Solo se puede seleccionar un descuento entre 0 y 100!", "Error de Validación", MessageBoxButtons.OK);
+                }
+                TxTDescuento.Focus();
+                TxTDescuento.SelectAll();
+
+            }
+        }
+
+        private void TxTBuscarCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            TmrBuscar.Enabled = false;
+        }
+
+        private void TxTBuscarCliente_KeyUp(object sender, KeyEventArgs e)
+        {
+            TmrBuscar.Enabled = true;
+        }
+
+        private void TmrBuscar_Tick(object sender, EventArgs e)
+        {
+            TmrBuscar.Enabled = false;
+
+            if (!string.IsNullOrEmpty(TxTBuscar.Text.Trim()))
+            {
+                string Filtro = TxTBuscar.Text.Trim();
+                LlenarListaProductos(Filtro);
+            }
+            else
+            {
+                LlenarListaProductos();
+            }
         }
     }
 }

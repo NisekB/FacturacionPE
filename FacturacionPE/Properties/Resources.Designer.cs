@@ -63,6 +63,16 @@ namespace FacturacionPE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2799204_management_99783 {
+            get {
+                object obj = ResourceManager.GetObject("2799204-management_99783", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _65000 {
             get {
                 object obj = ResourceManager.GetObject("65000", resourceCulture);
@@ -76,6 +86,16 @@ namespace FacturacionPE.Properties {
         internal static System.Drawing.Bitmap blue_iphone_wallpaper_1 {
             get {
                 object obj = ResourceManager.GetObject("blue-iphone-wallpaper-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap images {
+            get {
+                object obj = ResourceManager.GetObject("images", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

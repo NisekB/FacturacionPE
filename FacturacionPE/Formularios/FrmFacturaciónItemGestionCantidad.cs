@@ -40,19 +40,10 @@ namespace FacturacionPE.Formularios
             if (Validar())
             {
 
-                DataRow ChangeLineaDetalleEnFacturacion = ObjetosGlobales.MiFormDeFacturacion.ListaDetallesLocal.NewRow();
-                DialogResult = DialogResult.OK;
-
-                ChangeLineaDetalleEnFacturacion["CantidadFacturada"] = TxTCantidad.Value;
-
-                //DataGridViewRows newDataRow = ObjetosGlobales.ObjetosGlobales.MiFormDeFacturacion.ListaDetallesLocal.Rows[indexRow];
-                //ObjetosGlobales.MiFormDeFacturacion.ListaDetallesLocal.Cell[3].Value = TxTCantidad.Value;
-
-
-                ObjetosGlobales.MiFormDeFacturacion.ListaDetallesLocal.Rows.Add(ChangeLineaDetalleEnFacturacion);
-                DialogResult = DialogResult.OK;
-
+                ObjetosGlobales.MiFormDeFacturacion.CantidadProducto = Convert.ToInt32(TxTCantidad.Value);
+                this.DialogResult = DialogResult.OK;
             }
+           
         }
 
 
@@ -60,23 +51,24 @@ namespace FacturacionPE.Formularios
         {
             bool R = false;
 
-            if (TxTCantidad.Value > 0)
+            if (Convert.ToInt32(TxTCantidad.Value) > 0)
             {
                 R = true;
             }
             else
             {
-                if (TxTCantidad.Value == 0)
+                if (Convert.ToInt32(TxTCantidad.Value) == 0)
                 {
                     MessageBox.Show("No se puede cambiar el valor a 0", "Error de Validación", MessageBoxButtons.OK);
                     return false;
                 }
             }
-
-
-
             return R;
         }
 
+        private void TxTCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validacion.CaracteresNumeros(e, true);
+        }
     }
 }

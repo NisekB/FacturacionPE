@@ -76,6 +76,7 @@
             0,
             0,
             0});
+            this.TxTCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxTCantidad_KeyPress);
             // 
             // label1
             // 

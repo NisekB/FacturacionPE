@@ -464,6 +464,7 @@
             this.BtnLimpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnLimpiar.UseVisualStyleBackColor = false;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // BtnEliminar
             // 

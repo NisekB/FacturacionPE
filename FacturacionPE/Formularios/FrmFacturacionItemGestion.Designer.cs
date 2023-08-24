@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnAceptar = new System.Windows.Forms.Button();
-            this.TxTBuscarCliente = new System.Windows.Forms.TextBox();
+            this.TxTBuscar = new System.Windows.Forms.TextBox();
             this.DgvListaProductos = new System.Windows.Forms.DataGridView();
             this.CIDProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCodigoDeBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxTCantidad = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.TmrBuscar = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaProductos)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxTCantidad)).BeginInit();
@@ -84,15 +86,17 @@
             this.BtnAceptar.UseVisualStyleBackColor = false;
             this.BtnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
             // 
-            // TxTBuscarCliente
+            // TxTBuscar
             // 
-            this.TxTBuscarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxTBuscarCliente.ForeColor = System.Drawing.Color.DarkGreen;
-            this.TxTBuscarCliente.Location = new System.Drawing.Point(197, 18);
-            this.TxTBuscarCliente.Name = "TxTBuscarCliente";
-            this.TxTBuscarCliente.Size = new System.Drawing.Size(480, 30);
-            this.TxTBuscarCliente.TabIndex = 13;
-            this.TxTBuscarCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxTBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxTBuscar.ForeColor = System.Drawing.Color.DarkGreen;
+            this.TxTBuscar.Location = new System.Drawing.Point(197, 18);
+            this.TxTBuscar.Name = "TxTBuscar";
+            this.TxTBuscar.Size = new System.Drawing.Size(480, 30);
+            this.TxTBuscar.TabIndex = 13;
+            this.TxTBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxTBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxTBuscarCliente_KeyDown);
+            this.TxTBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxTBuscarCliente_KeyUp);
             // 
             // DgvListaProductos
             // 
@@ -324,6 +328,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "CANTIDAD";
             // 
+            // TmrBuscar
+            // 
+            this.TmrBuscar.Interval = 800;
+            this.TmrBuscar.Tick += new System.EventHandler(this.TmrBuscar_Tick);
+            // 
             // FrmFacturacionItemGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -332,7 +341,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DgvListaProductos);
-            this.Controls.Add(this.TxTBuscarCliente);
+            this.Controls.Add(this.TxTBuscar);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnAceptar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -353,7 +362,7 @@
 
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.Button BtnAceptar;
-        private System.Windows.Forms.TextBox TxTBuscarCliente;
+        private System.Windows.Forms.TextBox TxTBuscar;
         private System.Windows.Forms.DataGridView DgvListaProductos;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
@@ -373,5 +382,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CDescripcion;
         private System.Windows.Forms.TextBox TxTPrecioFinal;
         private System.Windows.Forms.Label PrecioFinal;
+        private System.Windows.Forms.Timer TmrBuscar;
     }
 }

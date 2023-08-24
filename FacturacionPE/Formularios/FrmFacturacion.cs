@@ -8,14 +8,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace FacturacionPE.Formularios
 {
     public partial class FrmFacturacion : Form
     {
         public Logica.Models.Factura FacturaLocal { get; set; }
+        public Logica.Models.FacturaDetalle MiDetalleLocal { get; set; }
 
         public DataTable ListaDetallesLocal { get; set; }
+
+        public int countRowList = 0;
+        public int CantidadProducto = 0;
+        public int IDproduct = 0;
+
+        public decimal SubTotalLinea { get; set; }
+        public decimal PorcentajeDescuento { get; set; }
+        public decimal Subtotal2 { get; set; }
+        public decimal ImpuestoLinea { get; set; }
+        public decimal TotalLinea { get; set; }
+        public string Anotaciones { set; get; }
+        public decimal PrecioUnitario { get; set; }
+        public decimal Cantidad { get; set; }
 
         public FrmFacturacion()
         {
@@ -121,19 +136,94 @@ namespace FacturacionPE.Formularios
 
         private void BtnItemModificar_Click(object sender, EventArgs e)
         {
-                     
+
+            Logica.Models.FacturaDetalle Detalle = new Logica.Models.FacturaDetalle();
+            Logica.Models.Factura Fact = new Logica.Models.Factura();
+            Factura R = new Factura();    
+
+            //if (DgvListaItems.SelectedRows.Count == 1)
+            //{
+            //    Form MiFrm = new FrmFacturaciónItemGestionCantidad();
+            //    DialogResult cambio = MiFrm.ShowDialog();
+            //    if (cambio == DialogResult.OK)
+            //    {
+            //        DgvListaItems.DataSource = ListaDetallesLocal;
+            //        TotalizarFactura();
+            //    }
+
+            //}
+
             if (DgvListaItems.SelectedRows.Count == 1)
+            //if (DgvListaItems.Rows.Count > 0 && countRowList == 1)
             {
-                Form MiFrm = new FrmFacturaciónItemGestionCantidad();
-                DialogResult cambio = MiFrm.ShowDialog();
-                if (cambio == DialogResult.OK)
+                DataGridViewRow r = DgvListaItems.SelectedRows[0];
+                IDproduct = Convert.ToInt32(r.Cells["CIDProducto"].Value);
+                CantidadProducto = Convert.ToInt32(r.Cells["CCantidadFacturada"].Value);
+
+
+                Detalle.PrecioUnitario = Convert.ToDecimal(r.Cells["CPrecioUnitario"].Value);
+                Detalle.ImpuestoLinea = Convert.ToDecimal(r.Cells["CImpuestosLinea"].Value);
+                Detalle.PorcentajeDescuento = Convert.ToDecimal(r.Cells["CPorcentajeDescuento"].Value);
+                Detalle.SubTotalLinea = Convert.ToDecimal(r.Cells["CSubTotalLinea"].Value);
+                Detalle.TotalLinea = Convert.ToDecimal(r.Cells["CTotalLinea"].Value);
+       
+
+                //Detalle.PrecioUnitario = (Decimal)Convert.ToDouble(r.Cells["CPrecioUnitario"].Value);
+                //Detalle.ImpuestoLinea = (Decimal)Convert.ToDouble(r.Cells["CImpuestosLinea"].Value);
+                //Detalle.PorcentajeDescuento = (Decimal)Convert.ToDouble(r.Cells["CPorcentajeDescuento"].Value);
+                //Detalle.SubTotalLinea = (Decimal)Convert.ToDouble(r.Cells["CSubTotalLinea"].Value);
+                //Detalle.TotalLinea = (Decimal)Convert.ToDouble(r.Cells["CTotalLinea"].Value);
+
+
+
+                //R.IDUsuario = Convert.ToInt32(MisDatos["IDUsuario"]);
+
+
+                Form FormGestionCantidad = new FrmFacturaciónItemGestionCantidad();
+                DialogResult resp = FormGestionCantidad.ShowDialog();
+
+                if (resp == DialogResult.OK)
                 {
-                    DgvListaItems.DataSource = ListaDetallesLocal;
+                    //r.Cells["CCantidad"].Value = CantidadProducto;
+
+                    foreach (DataRow Row in ListaDetallesLocal.Rows)
+                    {
+                        if (Convert.ToInt32(Row["IDProducto"]) == IDproduct)
+                        {
+                            TotalizarFactura();
+                            //CalcularNuevosDatos();
+
+                            Row["PrecioUnitario"] = Detalle.PrecioUnitario;                           
+                            Row["PorcentajeDescuento"] = Detalle.PorcentajeDescuento;
+                            //Row["ImpuestoLinea"] = Detalle.ImpuestoLinea;
+                            Row["SubTotalLinea"] = Detalle.SubTotalLinea;
+                            Row["TotalLinea"] = Detalle.TotalLinea;
+                            Row["CantidadFacturada"] = CantidadProducto;
+
+
+                        }
+                    }
+                    DgvListaItems.DataSource = DgvListaItems;
+                    DgvListaItems.ClearSelection();
+
                     TotalizarFactura();
+                    countRowList = 0;
                 }
-                
+                else
+                {
+                    MessageBox.Show("Modificación del Item Cancelada",
+                        "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CantidadProducto = 0;
+                }
             }
-                
+            else
+            {
+                MessageBox.Show("Debe Seleccionar una Fila (Item), presionando o " +
+                    "dando click en el nombre, o precio del *ITEM* en la lista",
+                    "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CantidadProducto = 0;
+            }
+
         }
 
         private void BtnItemAgregar_Click(object sender, EventArgs e)
@@ -254,6 +344,11 @@ namespace FacturacionPE.Formularios
                 DgvListaItems.DataSource = ListaDetallesLocal;
                 DgvListaItems.ClearSelection();
             }
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
         }
     }
 }
