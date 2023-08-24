@@ -175,7 +175,6 @@ namespace FacturacionPE.Formularios
                 //Detalle.TotalLinea = (Decimal)Convert.ToDouble(r.Cells["CTotalLinea"].Value);
 
 
-
                 //R.IDUsuario = Convert.ToInt32(MisDatos["IDUsuario"]);
 
 
